@@ -24,11 +24,14 @@ This is an official standardization doc for InterActivePDK 2019 developed by [In
     - [ ] 外部JS文件分布 | Outer Javascript File Distribution
 
 ## 系统综述 | System Overview
-形随意动PDK全称形随意动公用开发套件, 专门用来处理对形随意动用户的登录请求和第三方应用授权请求.
-形随意动PDK前端登录命名为BlueAirLive(新开发版本为2.1), 后端命名为OPENAPI(新开发版本为4.1)
-InterActivePDK's full name is InterActive+ Public Development Kit, is designed specifically for dealing with the login of our user systems and auth request from 3rd party apps.
-InterActivePDK's frontend login page is called BlueAirLive(New version is 2.1), backend is called OPENAPI(New version is 4.1)
+
+形随意动PDK全称形随意动公用开发套件, 专门用来处理对形随意动用户的登录请求和第三方应用授权请求.   
+形随意动PDK前端登录命名为BlueAirLive(新开发版本为2.1), 后端命名为OPENAPI(新开发版本为4.1)   
+InterActivePDK's full name is InterActive+ Public Development Kit, is designed specifically for dealing with the login of our user systems and auth request from 3rd party apps.   
+InterActivePDK's frontend login page is called BlueAirLive(New version is 2.1), backend is called OPENAPI(New version is 4.1)   
+
 ---
+
 形随意动PDK是由四方组成的用户授权系统:
 
 1. 用户
@@ -48,6 +51,7 @@ InterActivePDK is consist of four groups:
 4. Third-Party Authentication Authority
 
 Here users can use their own`PDK` account to login into `PDK` services, or use `Third Party Auth` to login into `PDK`. After logging into `PDK`, users can enjoy services provided by `Third Party Apps` and `InterActivePlus`. At the same time, users can change their preferences inside `PDK`, aloowing or disabling `Third Party Apps` or `Interactive Services` to gain certain rights(including sending emails, getting user's personal information, etc.), or just cancel their certificate to a certain app.
+
 
 ## 项目目的 | Motivations
 
