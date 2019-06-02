@@ -7,6 +7,7 @@ This is an official standardization doc for InterActivePDK 2019 developed by [In
 
 ## 目录与进度 | Directory and Progress
 
+- [ ] [项目策划书 | Project Plan](ProjectPlan/)
 - [ ] 编码规范 | Coding Standards
     - [ ] 前端编码规范 | Frontend Coding Standards
         - [ ] JS编码规范 | Javascript Coding Standards
