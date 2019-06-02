@@ -23,9 +23,9 @@
 
 ##### 注册流程
 
-[!注册流程图](../static/_ProjectPlan/RegistrationFlowChart.png)
+![注册流程图](../static/_ProjectPlan/RegistrationFlowChart.png)
 
 ##### 登录流程
 
-[!登录流程图](../static/_ProjectPlan/LoginFlowChart.png)
+![登录流程图](../static/_ProjectPlan/LoginFlowChart.png)
 
