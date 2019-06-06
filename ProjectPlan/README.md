@@ -16,8 +16,8 @@
 
 ---
 
-`用户ID关键数据点`(统称`UID`): 手机号 / 邮箱 / 人脸特征 待定   
-`用户密码类型`(统称`PasswordType`): 文本密码 / SHA密钥串 / 人脸特征
+`用户ID关键数据点`(统称`UID`): 由系统生成, 此为内部id码, 用户不可见, 每个账户终生不会改变uid   
+`用户密码类型`(统称`PasswordType`): 文本密码    
 
 #### 流程图
 
@@ -29,3 +29,15 @@
 
 ![登录流程图](../static/_ProjectPlan/LoginFlowChart.png)
 
+##### 第三方授权流程
+
+![授权流程图](../static/_ProjectPlan/AuthorizationFlowChart.png)
+
+### 第三方APP管理系统
+
+第三方APP管理系统是控制第三方APP行为的一个系统, 负责与第三方APP进行标准API和拓展API的交互. 第三方APP管理系统定义的API需要允许第三方APP执行`用户登录授权`, `用户资源获取`, `发送提醒信息`等功能.   
+第三方APP管理系统需要与`用户系统`协同配合以读取用户对特定APP的权限设置.   
+
+---
+
+** 注意, 第三方APP所获取的用户Token区别于主站Token **   
