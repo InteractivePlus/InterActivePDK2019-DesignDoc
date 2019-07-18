@@ -15,7 +15,7 @@ This is an official standardization doc for InterActivePDK 2019 developed by [In
     - [ ] 后端编码规范 | Backend Coding Standards
         - [ ] PHP编码规范 | PHP Coding Standards
         - [ ] 后端代码提交审核规范 | Backend Code Submit & Review Standard
-- [ ] 后端架构 | Backend Coding Structures
+- [ ] [后端架构 | Backend Coding Structures](CodingStructures/Backend/)
     - [ ] 数据库结构和储存算法 | Database Structure And Information Storage Algorithms
     - [ ] 核心库架构 | Core Library Structure
     - [ ] 外部API包装架构 | API Wrapper Structure
