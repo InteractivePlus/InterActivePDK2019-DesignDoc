@@ -225,7 +225,7 @@ To be filled.
 InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKException`类的实例. PDK Exception支持声明 `Error_Code(错误代码)`, `Message(详细信息)`, `Params(错误参数)`, 和 `Previous(上一个堆栈中的错误)` 4个参数. 
 
 |Error_Code|名称|解释|批注|参数(Params)|
-|-|-|-|-|
+|-|-|-|-|-|
 |10001|User non-existant|用户不存在|-|-|
 |10002|User frozen|用户被注销|-|-|
 |10003|User not verified|用户未验证(邮箱或手机)|-|-|
