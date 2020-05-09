@@ -87,6 +87,7 @@ To be filled.
 |relatedapps|TEXT|用户可以管理的APPID|gzcompress(original json array)|["appid1","appid2"], 可留空|
 |is_admin|TINYINT(1)|是否是管理员用户|-|1(true) / 0(false)|
 |avatar|CHAR(32)|用户头像md5|md5(头像数据)|如果是默认头像则留空|
+|is_frozen|TINYINT(1)|是否被冻结|-|1(true) / 0(false)|
 
 #### 4.2.2 usergroup_infos表
 
@@ -218,3 +219,30 @@ To be filled.
 |键位|数据类型|解释|
 |-|-|-|
 |new_phone|String|新手机|
+
+## 6.0 PDK Core 错误代码表
+
+InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKException`类的实例. PDK Exception支持声明 `Error_Code(错误代码)`, `Message(详细信息)`, `Params(错误参数)`, 和 `Previous(上一个堆栈中的错误)` 4个参数. 
+
+|Error_Code|名称|解释|批注|参数(Params)|
+|-|-|-|-|
+|10001|User non-existant|用户不存在|-|-|
+|10002|User frozen|用户被注销|-|-|
+|10003|User not verified|用户未验证(邮箱或手机)|-|-|
+|20001|APP non-existant|第三方APP不存在|-|-|
+|20002|APP frozen|第三方APP被注销|-|-|
+|20003|APP error|第三方APP内部错误|-|-|
+|30001|Credentials not correct|验证凭据不正确|-|-|
+|30002|Credentials not formatted|验证凭据与规定格式不符|-|-|
+|30003|Permission Denied|无权限|-|-|
+|40001|Spam Message|垃圾信息|-|-|
+|40002|Operation Too Frequent|操作过于频繁|-|-|
+|50001|System Busy|系统繁忙|-|-|
+|50002|Email Service Unavailable|邮件系统繁忙|-|-|
+|50003|Email Service Auth Failure|邮件系统登录失败|-|-|
+|50004|SMS Service Unavailable|短信系统繁忙|-|-|
+|50005|SMS Service Auth Failure|短信系统登录失败|-|-|
+|50006|DB Conn Error|数据库连接错误|-|-|
+|50007|DB Query Error|数据库提交/获取数据错误|-|-|
+|50008|DB Timeout Error|数据库超时错误|-|-|
+|51000|Inner Error|内部错误|-|-|
