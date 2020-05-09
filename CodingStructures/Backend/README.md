@@ -39,6 +39,7 @@ To be filled.
 |DISPLAYNAME_REGEX|展示名合法性验证正则(可留空)|
 |SIGNATURE_MAXLEN|用户签名最大长度|
 |SIGNATURE_REGEX|用户签名合法性验证正则(可留空)|
+|EMAIL_MAXLEN|邮箱地址最大长度|
 |PASSWORD_MINLEN|密码最小长度|
 |PASSWORD_MAXLEN|密码最大长度|
 |PASSWORD_REGEX|密码合法性验证正则(可留空)|
@@ -79,7 +80,7 @@ To be filled.
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|-|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
-|email|VARCHAR(50)|邮箱|-|-|
+|email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|-|
 |phone_number|VARCHAR(15)|用户绑定手机号|-|前三位放国家区号(不足3位前面放0), 后12位放手机号|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
 |thirdauth|TEXT|第三方登录绑定信息|gzcompress(original json object)|-|
