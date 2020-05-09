@@ -33,11 +33,15 @@ To be filled.
 |-|-|
 |USERNAME_MINLEN|用户名/用户组名最小长度|
 |USERNAME_MAXLEN|用户名/用户组名最大长度|
+|USERNAME_REGEX|用户名合法性验证正则(可留空)|
 |DISPLAYNAME_MINLEN|展示名最小长度|
 |DISPLAYNAME_MAXLEN|展示名最大长度|
+|DISPLAYNAME_REGEX|展示名合法性验证正则(可留空)|
 |SIGNATURE_MAXLEN|用户签名最大长度|
+|SIGNATURE_REGEX|用户签名合法性验证正则(可留空)|
 |PASSWORD_MINLEN|密码最小长度|
 |PASSWORD_MAXLEN|密码最大长度|
+|PASSWORD_REGEX|密码合法性验证正则(可留空)|
 |LOGIN_SINGLEIPMAXTRIAL_COUNT|单个IP在固定时间里最多尝试错误登录几次|
 |LOGIN_SINGLEIPMAXTRIAL_DURATION|上面变量的固定时间长度(秒)|
 |AVATOR_MAX_SIZE|用户头像最大大小(kB)|
