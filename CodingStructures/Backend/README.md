@@ -51,6 +51,8 @@ To be filled.
 |VERIFICATION_CODE_SALT|验证码加密SALT|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|
+|DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|
+|DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|
 
 ## 4.0 数据库结构定义
 
@@ -76,7 +78,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|-|
+|username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|唯一索引|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|-|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
@@ -98,7 +100,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|groupid|VARCHAR(`USERNAME_MAXLEN`)|组id|-|-|
+|groupid|VARCHAR(`USERNAME_MAXLEN`)|组id|-|唯一索引|
 |parent-group-id|VARCHAR(`USERNAME_MAXLEN`)|父组id|-|-|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|组展示名|-|-|
 |description|VARCHAR(`SIGNATURE_MAXLEN`)|组详细信息|-|-|
@@ -111,7 +113,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |token|CHAR(32)|用户分配到的TOKEN|md5(username + rand(0, 10000), `TOKEN_SALT`)|-|
-|username|VARCHAR(`USERNAME_MAXLEN`)|token关联的用户名|-|-|
+|username|VARCHAR(`USERNAME_MAXLEN`)|token关联的用户名|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
 |client_addr|VARCHAR(40)|用户客户端IP地址|original|ipv4/ipv6|
@@ -121,7 +123,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |code|CHAR(32)|验证码|md5(username + rand(0,10000) + time() + `VERIFICATION_CODE_SALT`)|-|
-|username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|-|
+|username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
 |sent_method|TINYINT|发送方式|-|0 = 手机, 1 = email|
