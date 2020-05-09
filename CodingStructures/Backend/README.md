@@ -81,7 +81,7 @@ To be filled.
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|-|
-|phone_number|VARCHAR(15)|用户绑定手机号|-|前三位放国家区号(不足3位前面放0), 后12位放手机号|
+|phone_number|CHAR(15)|用户绑定手机号|E.164|-|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
 |thirdauth|TEXT|第三方登录绑定信息|gzcompress(original json object)|-|
 |email_verified|TINYINT(1)|邮箱是否验证过|-|1(true) / 0(false)|
