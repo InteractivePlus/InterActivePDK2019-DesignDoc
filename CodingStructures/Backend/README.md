@@ -101,7 +101,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |groupid|VARCHAR(`USERNAME_MAXLEN`)|组id|-|唯一索引|
-|parent-group-id|VARCHAR(`USERNAME_MAXLEN`)|父组id|-|-|
+|parent_group_id|VARCHAR(`USERNAME_MAXLEN`)|父组id|-|-|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|组展示名|-|-|
 |description|VARCHAR(`SIGNATURE_MAXLEN`)|组详细信息|-|-|
 |regtime|INT|组注册时间|time()|-|
