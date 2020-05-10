@@ -53,6 +53,7 @@ To be filled.
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|
 |DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|
 |DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|
+|DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|
 
 ## 4.0 数据库结构定义
 
@@ -258,3 +259,6 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |50007|DB Query Error|数据库提交/获取数据错误|-|errNo,errMsg|
 |50008|DB Timeout Error|数据库超时错误|-|-|
 |51000|Inner Error|内部错误|-|-|
+|60001|Usergroup non-existant|用户组不存在|-|-|
+|60002|Usergroup already exist|用户组已存在|-|-|
+|60003|Usergroup display name already exist|用户展示名已存在|-|-|
