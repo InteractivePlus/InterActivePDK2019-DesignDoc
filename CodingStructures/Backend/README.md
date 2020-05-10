@@ -81,7 +81,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|唯一索引|
-|display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|-|
+|display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|唯一索引|
