@@ -236,9 +236,13 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |10001|User non-existant|用户不存在|-|-|
 |10002|User frozen|用户被注销|-|-|
 |10003|User not verified|用户未验证(邮箱或手机)|-|-|
+|10004|User already exist|用户已存在|-|-|
+|10005|User email already exist|用户邮箱已存在|-|-|
+|10006|User phone already exist|用户手机已存在|-|-|
 |20001|APP non-existant|第三方APP不存在|-|-|
 |20002|APP frozen|第三方APP被注销|-|-|
 |20003|APP error|第三方APP内部错误|-|-|
+|20004|APP already exist|第三方APPID已被占用|-|-|
 |30001|Credentials not correct|验证凭据不正确|-|-|
 |30002|Credentials not formatted|验证凭据与规定格式不符|-|-|
 |30003|Permission Denied|无权限|-|-|
