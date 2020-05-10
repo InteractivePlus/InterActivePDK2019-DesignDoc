@@ -54,6 +54,7 @@ To be filled.
 |DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|
 |DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|
 |DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|
+|ALLOW_TOKEN_IP_CHANGE|允许用户登录状态在更改IP后继续使用|
 
 ## 4.0 数据库结构定义
 
