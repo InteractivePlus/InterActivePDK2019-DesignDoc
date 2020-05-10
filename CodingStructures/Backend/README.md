@@ -94,6 +94,7 @@ To be filled.
 |permission_override|TEXT|用户权限(覆盖组权限的内容)|gzcompress(original json object)|可留空|
 |group|VARCHAR(`USERNAME_MAX`)|用户组|original|-|
 |regtime|INT|用户注册时间|time()|-|
+|reg_client_addr|VARCHAR(40)|用户注册时的IP地址|-|ipv4/ipv6|
 |is_admin|TINYINT(1)|是否是管理员用户|-|1(true) / 0(false)|
 |avatar|CHAR(32)|用户头像md5|md5(头像数据)|如果是默认头像则留空|
 |is_frozen|TINYINT(1)|是否被冻结|-|1(true) / 0(false)|
