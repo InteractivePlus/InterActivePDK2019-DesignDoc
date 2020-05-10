@@ -84,8 +84,8 @@ To be filled.
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|-|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
-|email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|-|
-|phone_number|CHAR(15)|用户绑定手机号|E.164|-|
+|email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|唯一索引|
+|phone_number|CHAR(15)|用户绑定手机号|E.164|唯一索引|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
 |email_verified|TINYINT(1)|邮箱是否验证过|-|1(true) / 0(false)|
 |phone_verified|TINYINT(1)|手机是否被验证过|-|1(true) / 0(false)|
@@ -254,6 +254,6 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |50004|SMS Service Unavailable|短信系统繁忙|-|-|
 |50005|SMS Service Auth Failure|短信系统登录失败|-|-|
 |50006|DB Conn Error|数据库连接错误|-|-|
-|50007|DB Query Error|数据库提交/获取数据错误|-|-|
+|50007|DB Query Error|数据库提交/获取数据错误|-|errNo,errMsg|
 |50008|DB Timeout Error|数据库超时错误|-|-|
 |51000|Inner Error|内部错误|-|-|
