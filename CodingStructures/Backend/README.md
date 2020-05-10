@@ -262,3 +262,4 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |60001|Usergroup non-existant|用户组不存在|-|-|
 |60002|Usergroup already exist|用户组已存在|-|-|
 |60003|Usergroup display name already exist|用户展示名已存在|-|-|
+|60004|Parentgroup non-existant|父组不存在|-|-|
