@@ -3,7 +3,7 @@
 
 ---
 
-最新版本: 20200509-0.0.2 A
+最新版本: 20200510-0.0.3 A
 
 ## 1.0 基本概念
 OPENAPI4.1 底层架构致力于简化开发过程中繁琐的代码重合和交互逻辑, 我们希望将每个功能区块完整的区分出来并明确他们之间的界限. 同时底层的交互逻辑应减少与数据库连接的次数, 减少服务器总体压力, 提升性能表现.   
@@ -69,6 +69,7 @@ To be filled.
 |logged_infos|用户已登录信息储存表(主站Token储存表)|
 |verification_codes|用户验证码信息储存表|
 |app_infos|第三方APP信息储存表|
+|thirdauth_infos|第三方登录信息储存表|
 |logs|日志信息储存表|
 |avatars|用户头像储存表|
 
@@ -85,7 +86,6 @@ To be filled.
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|-|
 |phone_number|CHAR(15)|用户绑定手机号|E.164|-|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
-|thirdauth|TEXT|第三方登录绑定信息|gzcompress(original json object)|-|
 |email_verified|TINYINT(1)|邮箱是否验证过|-|1(true) / 0(false)|
 |phone_verified|TINYINT(1)|手机是否被验证过|-|1(true) / 0(false)|
 |permission_override|TEXT|用户权限(覆盖组权限的内容)|gzcompress(original json object)|可留空|
