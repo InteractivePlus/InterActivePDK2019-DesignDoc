@@ -84,8 +84,8 @@ To be filled.
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|唯一索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
-|email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|唯一索引|
-|phone_number|CHAR(15)|用户绑定手机号|E.164|唯一索引|
+|email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|索引|
+|phone_number|CHAR(15)|用户绑定手机号|E.164|索引|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
 |email_verified|TINYINT(1)|邮箱是否验证过|-|1(true) / 0(false)|
 |phone_verified|TINYINT(1)|手机是否被验证过|-|1(true) / 0(false)|
@@ -239,12 +239,13 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |10004|User already exist|用户已存在|-|-|
 |10005|User email already exist|用户邮箱已存在|-|-|
 |10006|User phone already exist|用户手机已存在|-|-|
+|10007|User display name already exist|用户昵称已存在|-|-|
 |20001|APP non-existant|第三方APP不存在|-|-|
 |20002|APP frozen|第三方APP被注销|-|-|
 |20003|APP error|第三方APP内部错误|-|-|
 |20004|APP already exist|第三方APPID已被占用|-|-|
 |30001|Credentials not correct|验证凭据不正确|-|-|
-|30002|Credentials not formatted|验证凭据与规定格式不符|-|-|
+|30002|Credentials not formatted|验证凭据与规定格式不符|-|credential="`database_col_name`"|
 |30003|Permission Denied|无权限|-|-|
 |40001|Spam Message|垃圾信息|-|-|
 |40002|Operation Too Frequent|操作过于频繁|-|-|
