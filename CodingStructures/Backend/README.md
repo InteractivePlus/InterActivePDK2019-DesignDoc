@@ -69,6 +69,7 @@ To be filled.
 |logged_infos|用户已登录信息储存表(主站Token储存表)|
 |verification_codes|用户验证码信息储存表|
 |app_infos|第三方APP信息储存表|
+|app_manage_infos|第三方APP管理信息储存表|
 |thirdauth_infos|第三方登录信息储存表|
 |logs|日志信息储存表|
 |avatars|用户头像储存表|
@@ -91,7 +92,6 @@ To be filled.
 |permission_override|TEXT|用户权限(覆盖组权限的内容)|gzcompress(original json object)|可留空|
 |group|VARCHAR(`USERNAME_MAX`)|用户组|original|-|
 |regtime|INT|用户注册时间|time()|-|
-|relatedapps|TEXT|用户可以管理的APPID|gzcompress(original json array)|["appid1","appid2"], 可留空|
 |is_admin|TINYINT(1)|是否是管理员用户|-|1(true) / 0(false)|
 |avatar|CHAR(32)|用户头像md5|md5(头像数据)|如果是默认头像则留空|
 |is_frozen|TINYINT(1)|是否被冻结|-|1(true) / 0(false)|
