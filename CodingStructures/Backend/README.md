@@ -119,6 +119,7 @@ To be filled.
 |username|VARCHAR(`USERNAME_MAXLEN`)|token关联的用户名|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
+|renew_time|INT|token更新时间|time()|-|
 |client_addr|VARCHAR(40)|用户客户端IP地址|original|ipv4/ipv6|
 
 #### 4.2.4 verification_codes表
