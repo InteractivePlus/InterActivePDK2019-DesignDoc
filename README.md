@@ -2,8 +2,8 @@
 
 ## 这个项目是什么? | What is this project?
 
-[形随意动](http://www.interactiveplus.org/) InterActivePDK2019最新官方文档, 用于标准化以及提前声明开发过程中使用到的前后端架构和代码标准 / 通信协议   
-This is an official standardization doc for InterActivePDK 2019 developed by [InterActivePlus](http://www.interactiveplus.org/). This doc is used to standardize the code structure, standard and communication protocols between frontends and backends.
+[形随意动](http://www.interactiveplus.org/) InterActivePDK2020最新官方文档, 用于标准化以及提前声明开发过程中使用到的前后端架构和代码标准 / 通信协议   
+This is an official standardization doc for InterActivePDK 2020 developed by [InterActivePlus](http://www.interactiveplus.org/). This doc is used to standardize the code structure, standard and communication protocols between frontends and backends.
 
 ## 目录与进度 | Directory and Progress
 
@@ -40,7 +40,7 @@ InterActivePDK's frontend login page is called BlueAirLive(New version is 2.1), 
 3. 第三方APP
 4. 第三方登录方
 
-其中用户可以用自己的`PDK`帐号登录`PDK`服务, 或用`第三方登录`的帐号登录到`PDK`. 在登录到`PDK`后用户可以享受到`第三方APP`和`形随意动官方`提供的服务. 同时用户可以调整自己在`PDK`中的个人喜好, 控制`第三方应用`和`形随意动官方`可以获得的权限(包括发送邮件, 获取个人信息等), 或直接取消授权某一个应用.   
+其中用户可以用自己的`PDK`帐号(形随意动账户)登录`PDK`服务, 或用`第三方登录`的帐号登录到`PDK`. 在登录到`PDK`后用户可以享受到`第三方APP`和`形随意动官方`提供的服务. 同时用户可以调整自己在`PDK`中的个人喜好, 控制`第三方应用`和`形随意动官方`可以获得的权限(包括发送邮件, 获取个人信息等), 或直接取消授权某一个应用.   
 
 ---
 
@@ -51,7 +51,7 @@ InterActivePDK is consist of four groups:
 3. Third-Party APP
 4. Third-Party Authentication Authority
 
-Here users can use their own`PDK` account to login into `PDK` services, or use `Third Party Auth` to login into `PDK`. After logging into `PDK`, users can enjoy services provided by `Third Party Apps` and `InterActivePlus`. At the same time, users can change their preferences inside `PDK`, aloowing or disabling `Third Party Apps` or `Interactive Services` to gain certain rights(including sending emails, getting user's personal information, etc.), or just cancel their certificate to a certain app.
+Here users can use their own`PDK` Account(InterActive+ Account) to login into `PDK` services, or use `Third Party Auth` Account to login into `PDK`. After logging into `PDK`, users can enjoy services provided by `Third Party Apps` and `InterActivePlus`. At the same time, users can change their preferences inside `PDK`, allowing or forbiddening `Third Party Apps` or `Interactive Services` to gain certain rights(including sending emails, getting user's personal information, etc.), or just cancel their certificate to a certain app.
 
 
 ## 项目目的 | Motivations
@@ -59,11 +59,11 @@ Here users can use their own`PDK` account to login into `PDK` services, or use `
 ---
 
 1. 由于形随意动提供的旗下服务包括了多个有用户登录功能的网站, 统一模块让所有旗下服务的用户系统达成一致对提升用户体验非常重要.
-2. 为了避免重复代码以及减少工作量, 形随意动旗下新产品在开发时一旦有需要储存用户信息 / 提供支付服务的, 使用此项目
+2. 为了避免重复代码以及减少工作量, 形随意动旗下新产品在开发时一旦有需要储存用户信息 / 云同步服务的, 使用此项目
 
 ---
 
 1. Our services include a lot of websites that have user login systems. Making them unified under one module is extremely important for us to elevate the user experience.
-2. In order to avoid repetitive code and reduce workload, whenever we make a new service that needs login / bill service, we will use this project.
+2. In order to avoid repetitive code and reduce workload, whenever we make a new service that needs login / cloud synchronization service, we will use this project.
 
 ---
