@@ -115,7 +115,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|token|CHAR(32)|用户分配到的TOKEN|md5(username + rand(0, 10000) + time(), `TOKEN_SALT`)|-|
+|token|CHAR(32)|用户分配到的TOKEN|md5(username + rand(0, 10000) + time(), `TOKEN_SALT`)|唯一索引|
 |username|VARCHAR(`USERNAME_MAXLEN`)|token关联的用户名|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
@@ -266,3 +266,5 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |60002|Usergroup already exist|用户组已存在|-|-|
 |60003|Usergroup display name already exist|用户展示名已存在|-|-|
 |60004|Parentgroup non-existant|父组不存在|-|-|
+|70001|Token expired|凭据已超时|-|-|
+|70002|Token not found|凭据不存在|-|-|
