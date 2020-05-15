@@ -31,6 +31,10 @@ To be filled.
 
 |变量名|解释|
 |-|-|
+|USER_SYSTEM_NAME|用户系统名称Array|
+|THIRD_PARTY_SYSTEM_NAME|第三方APP系统名称Array|
+|USER_SYSTEM_LINKS|用户系统回调链接(以后完善格式)|
+|THIRD_PARTY_SYSTEM_LINKS|第三方系统回调链接(以后完善格式)|
 |USERNAME_MINLEN|用户名/用户组名最小长度|
 |USERNAME_MAXLEN|用户名/用户组名最大长度|
 |USERNAME_REGEX|用户名合法性验证正则(可留空)|
@@ -269,3 +273,40 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |70001|Token expired|登录凭据已超时|-|-|
 |70002|Token not found|登录凭据不存在|-|-|
 |70003|Token already exist|登录凭据ID已存在|-|-|
+
+## 7.0 邮箱/短信信息发送
+
+发送方式在核心支持库中只定义接口, 实现将在外部Wrapper中实现发送类.   
+邮箱: 自建SMTP / 在线接口如[Mailgun](https://www.mailgun.com/)   
+SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)   
+
+### 7.1 邮箱信息发送
+
+每封邮件的正文都用会输出为标准HTML5语言, 即每个邮件正文都会以以下代码开始:   
+
+```html
+<!DOCTYPE html>
+<html>
+`CONTENT`
+</html>
+```
+
+核心库会使用[Twig项目](https://github.com/twigphp/twig/)作为邮件正文的渲染引擎.   
+`Twig引擎`的临时渲染文件夹将放在核心库的`/temporary/templates/emails/` + `LOCALE_NAME`目录中, 比如`/temporary/templates/emails/zh_CN/`.   
+邮件的模版文件会放在核心库的`/templates/emails/` + `LOCALE_NAME` 目录中, 比如`/templates/emails/zh_CN/`.      
+
+#### 7.1.1 邮件模版
+
+##### 7.1.1.1 验证码模版
+标题: 
+文件名: sendVeriCode.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|用户系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|veriCode|验证码|-|
+
