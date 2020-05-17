@@ -134,10 +134,11 @@ To be filled.
 |username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
-|sent_method|TINYINT|发送方式|-|0 = 手机, 1 = email|
+|sent_method|TINYINT|发送方式|-|0 = 未发送, 1 = 邮箱, 2 = 手机|
 |issue_time|INT|验证码分配时间|time()|-|
 |expire_time|INT|验证码过期时间|time() + `VERIFICATION_CODE_AVAILABLE_DURATION`|-|
 |used|TINYINT(1)|是否使用过了|-|1(true), 0(false)|
+|trigger_client_ip|VARCHAR(40)|用户请求此验证码时的ip地址|-|ipv4/ipv6|
 
 ## 5.0 数据库内部表键数据结构定义
 
