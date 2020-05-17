@@ -351,8 +351,6 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |systemName|用户系统名称|-|
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 |veriLink|可以前往修改密码的URL|-|
 
@@ -367,7 +365,6 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
 |userEmail|用户邮箱|-|
-|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 |newEmail|申请更改到的新邮箱|-|
 
@@ -381,7 +378,6 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |systemName|用户系统名称|-|
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
 |userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 |newPhone|申请更改到的新手机号码|-|
@@ -396,8 +392,6 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |systemName|用户系统名称|-|
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 
 ##### 7.1.1.90001 第三方APP重要操作验证
@@ -410,8 +404,6 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |systemName|APP系统名称|-|
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 
 ##### 7.1.1.90002 第三方APP删除内容验证
@@ -424,6 +416,4 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |systemName|APP系统名称|-|
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
