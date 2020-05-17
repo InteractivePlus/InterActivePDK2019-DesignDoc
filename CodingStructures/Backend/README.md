@@ -130,7 +130,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|code|CHAR(32)|验证码|md5(username + rand(0,10000) + time() + `VERIFICATION_CODE_SALT`)|-|
+|veri_code|CHAR(32)|验证码|md5(username + rand(0,10000) + time() + `VERIFICATION_CODE_SALT`)|唯一索引|
 |username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
@@ -187,11 +187,11 @@ To be filled.
 
 #### 5.3.1 验证码类型定义
 
-|验证码id|名称|注释|
+|验证码action_id|名称|注释|
 |-|-|-|
 |10001|邮箱验证|-|
 |10002|手机验证|-|
-|20001|修改密码验证|-|
+|20001|密码修改申请验证|-|
 |20002|修改邮箱验证|此验证码可发送到任何密保方式|
 |20003|修改手机验证|此验证码可发送到任何密保方式|
 |30001|管理员操作验证|-|
@@ -208,14 +208,14 @@ To be filled.
 
 留空
 
-##### 5.3.2.20001 修改密码验证
+##### 5.3.2.20001 密码修改申请验证
 
 类型: `JSON Object`   
 数据定义:   
 
 |键位|数据类型|解释|
 |-|-|-|
-|new_password|String|新密码|
+|client_ip_addr|String|尝试修改密码的用户IP|
 
 ##### 5.3.2.20002 修改邮箱验证
 
@@ -225,6 +225,7 @@ To be filled.
 |键位|数据类型|解释|
 |-|-|-|
 |new_email|String|新邮箱地址|
+|client_ip_addr|String|修改邮箱的用户IP|
 
 ##### 5.3.2.20003 修改手机验证
 
@@ -234,6 +235,31 @@ To be filled.
 |键位|数据类型|解释|
 |-|-|-|
 |new_phone|String|新手机|
+|client_ip_addr|String|修改手机的用户IP|
+
+##### 5.3.2.30001 管理员操作验证
+类型: `JSON Object`   
+数据定义:   
+
+|键位|数据类型|解释|
+|-|-|-|
+|client_ip_addr|String|操作的管理员用户IP|
+
+##### 5.3.2.90001 第三方APP重要操作验证
+类型: `JSON Object`   
+数据定义:   
+
+|键位|数据类型|解释|
+|-|-|-|
+|client_ip_addr|String|修改APP的用户IP|
+
+##### 5.3.2.90002 第三方APP删除内容验证
+类型: `JSON Object`   
+数据定义:   
+
+|键位|数据类型|解释|
+|-|-|-|
+|client_ip_addr|String|删除内容的用户IP|
 
 ## 6.0 PDK Core 错误代码表
 
@@ -292,14 +318,15 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ```
 
 核心库会使用[Twig项目](https://github.com/twigphp/twig/)作为邮件正文的渲染引擎.   
-`Twig引擎`的临时渲染文件夹将放在核心库的`/temporary/templates/emails/` + `LOCALE_NAME`目录中, 比如`/temporary/templates/emails/zh_CN/`.   
-邮件的模版文件会放在核心库的`/templates/emails/` + `LOCALE_NAME` 目录中, 比如`/templates/emails/zh_CN/`.      
+`Twig引擎`的临时渲染文件夹将放在核心库的`/temporary/` + 模版对应核心库根目录的绝对路径, 比如放在`/templates/XXX.tpl`的模版对应的临时文件夹就在`/temporary/templates/`.   
+邮件的模版文件会放在核心库的`/templates/email/` + `LOCALE_NAME` 目录中, 比如`/templates/email/zh_CN/`.      
+手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中.   
 
 #### 7.1.1 邮件模版
 
-##### 7.1.1.1 验证码模版
-标题: 
-文件名: sendVeriCode.tpl   
+##### 7.1.1.10001 邮箱验证模版
+验证码 action_id: 10001   
+文件名: verification_10001.tpl   
 变量列表:   
 
 |变量名|解释|注释|
@@ -308,5 +335,91 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
 |userEmail|用户邮箱|-|
+|veriLink|验证地址|-|
+
+##### 7.1.1.20001 密码修改申请验证模版
+验证码 action_id: 20001   
+文件名: verification_20001.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|用户系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
+|veriCode|验证码|-|
+|veriLink|可以前往修改密码的URL|-|
+
+##### 7.1.1.20002 修改邮箱验证
+验证码 action_id: 20002   
+文件名: verification_20002.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|用户系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
+|veriCode|验证码|-|
+|newEmail|申请更改到的新邮箱|-|
+
+##### 7.1.1.20003 修改手机验证
+验证码 action_id: 20003   
+文件名: verification_20003.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|用户系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
+|veriCode|验证码|-|
+|newPhone|申请更改到的新手机号码|-|
+
+##### 7.1.1.30001 管理员操作验证
+验证码 action_id: 30001   
+文件名: verification_30001.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|用户系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
 |veriCode|验证码|-|
 
+##### 7.1.1.90001 第三方APP重要操作验证
+验证码 action_id: 90001   
+文件名: verification_90001.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|APP系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
+|veriCode|验证码|-|
+
+##### 7.1.1.90002 第三方APP删除内容验证
+验证码 action_id: 90002   
+文件名: verification_90002.tpl   
+变量列表:   
+
+|变量名|解释|注释|
+|-|-|-|
+|systemName|APP系统名称|-|
+|username|用户名|-|
+|userDisplayName|用户展示名|-|
+|userEmail|用户邮箱|-|
+|userPhone|用户手机号码|-|
+|veriCode|验证码|-|
