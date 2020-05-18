@@ -29,36 +29,36 @@ To be filled.
 
 ## 3.0 在设置中可更改的部分变量注解
 
-|变量名|解释|
-|-|-|
-|USER_SYSTEM_NAME|用户系统名称Array|
-|THIRD_PARTY_SYSTEM_NAME|第三方APP系统名称Array|
-|USER_SYSTEM_LINKS|用户系统回调链接([见格式](#82-用户系统回调链接格式))|
-|THIRD_PARTY_SYSTEM_LINKS|第三方系统回调链接(以后完善格式)|
-|USERNAME_MINLEN|用户名/用户组名最小长度|
-|USERNAME_MAXLEN|用户名/用户组名最大长度|
-|USERNAME_REGEX|用户名合法性验证正则(可留空)|
-|DISPLAYNAME_MINLEN|展示名最小长度|
-|DISPLAYNAME_MAXLEN|展示名最大长度|
-|DISPLAYNAME_REGEX|展示名合法性验证正则(可留空)|
-|SIGNATURE_MAXLEN|用户签名最大长度|
-|SIGNATURE_REGEX|用户签名合法性验证正则(可留空)|
-|EMAIL_MAXLEN|邮箱地址最大长度|
-|PASSWORD_MINLEN|密码最小长度|
-|PASSWORD_MAXLEN|密码最大长度|
-|PASSWORD_REGEX|密码合法性验证正则(可留空)|
-|LOGIN_SINGLEIPMAXTRIAL_COUNT|单个IP在固定时间里最多尝试错误登录几次|
-|LOGIN_SINGLEIPMAXTRIAL_DURATION|上面变量的固定时间长度(秒)|
-|AVATOR_MAX_SIZE|用户头像最大大小(kB)|
-|PASSWORD_SALT|密码加密Salt|
-|TOKEN_SALT|TOKEN加密Salt|
-|VERIFICATION_CODE_SALT|验证码加密SALT|
-|TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|
-|VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|
-|DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|
-|DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|
-|DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|
-|ALLOW_TOKEN_IP_CHANGE|允许用户登录状态在更改IP后继续使用|
+|变量名|解释|变量类型|
+|-|-|-|
+|USER_SYSTEM_NAME|用户系统名称|MultiLang[string]|
+|THIRD_PARTY_SYSTEM_NAME|第三方APP系统名称|MultiLang[string]|
+|USER_SYSTEM_LINKS|用户系统回调链接([见格式](#82-用户系统回调链接格式))|MultiLang[array[string=>string]]|
+|THIRD_PARTY_SYSTEM_LINKS|第三方系统回调链接(以后完善格式)|MultiLang[array[string=>string]]|
+|USERNAME_MINLEN|用户名/用户组名最小长度|int|
+|USERNAME_MAXLEN|用户名/用户组名最大长度|int|
+|USERNAME_REGEX|用户名合法性验证正则(可留空)|string|
+|DISPLAYNAME_MINLEN|展示名最小长度|int|
+|DISPLAYNAME_MAXLEN|展示名最大长度|int
+|DISPLAYNAME_REGEX|展示名合法性验证正则(可留空)|string|
+|SIGNATURE_MAXLEN|用户签名最大长度|int|
+|SIGNATURE_REGEX|用户签名合法性验证正则(可留空)|string|
+|EMAIL_MAXLEN|邮箱地址最大长度|int|
+|PASSWORD_MINLEN|密码最小长度|int|
+|PASSWORD_MAXLEN|密码最大长度|int|
+|PASSWORD_REGEX|密码合法性验证正则(可留空)|string|
+|LOGIN_SINGLEIPMAXTRIAL_COUNT|单个IP在固定时间里最多尝试错误登录几次|int|
+|LOGIN_SINGLEIPMAXTRIAL_DURATION|上面变量的固定时间长度(秒)|int|
+|AVATOR_MAX_SIZE|用户头像最大大小(kB)|int|
+|PASSWORD_SALT|密码加密Salt|string|
+|TOKEN_SALT|TOKEN加密Salt|string|
+|VERIFICATION_CODE_SALT|验证码加密SALT|string|
+|TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
+|VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
+|DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|string|
+|DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|string|
+|DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|array[string=>unknown]|
+|ALLOW_TOKEN_IP_CHANGE|允许用户登录状态在更改IP后继续使用|bool|
 
 ## 4.0 数据库结构定义
 
@@ -427,7 +427,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |veriCode|验证码|-|
 
 ## 8.0 设置中的变量数据格式定义
-### 8.1 多语言变量格式
+### 8.1 多语言变量格式(MultiLang)
 每个多语言变量都是一个多键位JSON Object(PHP中用array), 每一个键位代表一种语言的内容.    
 键位用标准LOCALE_NAME来表示, 如`zh_CN`, `en_US`.   
 e.g.  
@@ -448,7 +448,7 @@ Setting::setPDKSetting(
 
 |URL键位|数据类型|解释|例子|GET变量|
 |-|-|-|-|-|
-|confirm_email_url|string|确认邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/confirmEmail/?veri_code=`{{veri_code}}`|veri_code|
-|confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code=`{{veri_code}}`|veri_code|
-|confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code=`{{veri_code}}`|veri_code|
+|confirm_email_url|string|确认邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/confirmEmail/?veri_code={{veri_code}}|veri_code|
+|confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code={{veri_code}}|veri_code|
+|confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code={{veri_code}}|veri_code|
 
