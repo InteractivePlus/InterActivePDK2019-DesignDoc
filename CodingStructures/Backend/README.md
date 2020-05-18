@@ -33,7 +33,7 @@ To be filled.
 |-|-|
 |USER_SYSTEM_NAME|用户系统名称Array|
 |THIRD_PARTY_SYSTEM_NAME|第三方APP系统名称Array|
-|USER_SYSTEM_LINKS|用户系统回调链接(以后完善格式)|
+|USER_SYSTEM_LINKS|用户系统回调链接([见格式](#82-用户系统回调链接格式))|
 |THIRD_PARTY_SYSTEM_LINKS|第三方系统回调链接(以后完善格式)|
 |USERNAME_MINLEN|用户名/用户组名最小长度|
 |USERNAME_MAXLEN|用户名/用户组名最大长度|
@@ -425,3 +425,30 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |username|用户名|-|
 |userDisplayName|用户展示名|-|
 |veriCode|验证码|-|
+
+## 8.0 设置中的变量数据格式定义
+### 8.1 多语言变量格式
+每个多语言变量都是一个多键位JSON Object(PHP中用array), 每一个键位代表一种语言的内容.    
+键位用标准LOCALE_NAME来表示, 如`zh_CN`, `en_US`.   
+e.g.  
+
+```PHP
+Setting::setPDKSetting(
+    'USER_SYSTEM_NAME',
+    array(
+        'zh_CN' => '幽径',
+        'en_US' => 'Solitary Trail'
+    )
+);
+```
+
+### 8.2 用户系统回调链接格式
+变量名: USER_SYSTEM_LINKS   
+格式: 多语言变量, 每个LOCALE_NAME中都是一个JSON Object, 键位如下:   
+
+|URL键位|数据类型|解释|例子|GET变量|
+|-|-|-|-|-|
+|confirm_email_url|string|确认邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/confirmEmail/?veri_code=`{{veri_code}}`|veri_code|
+|confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code=`{{veri_code}}`|veri_code|
+|confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code=`{{veri_code}}`|veri_code|
+
