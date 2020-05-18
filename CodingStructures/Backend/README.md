@@ -321,8 +321,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 </html>
 ```
 
-核心库会使用[Twig项目](https://github.com/twigphp/twig/)作为邮件正文的渲染引擎.   
-`Twig引擎`的临时渲染文件夹将放在核心库的`/temporary/` + 模版对应核心库根目录的绝对路径, 比如放在`/templates/XXX.tpl`的模版对应的临时文件夹就在`/temporary/templates/`.   
+核心库会使用PHP字符串替换, 模版中使用变量需要用{{ variableName }}或{{variableName}}来表示.   
 邮件的模版文件会放在核心库的`/templates/email/` + `LOCALE_NAME` 目录中, 比如`/templates/email/zh_CN/`.      
 手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中.   
 
@@ -330,7 +329,8 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 
 ##### 7.1.1.10001 邮箱验证模版
 验证码 action_id: 10001   
-文件名: verification_10001.tpl   
+文件名: verification_10001.html   
+标题文件名: verification_10001.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -344,6 +344,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.20001 密码修改申请验证模版
 验证码 action_id: 20001   
 文件名: verification_20001.tpl   
+标题文件名: verification_20001.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -357,6 +358,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.20002 修改邮箱验证
 验证码 action_id: 20002   
 文件名: verification_20002.tpl   
+标题文件名: verification_20002.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -371,6 +373,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.20003 修改手机验证
 验证码 action_id: 20003   
 文件名: verification_20003.tpl   
+标题文件名: verification_20003.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -385,6 +388,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.30001 管理员操作验证
 验证码 action_id: 30001   
 文件名: verification_30001.tpl   
+标题文件名: verification_30001.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -397,6 +401,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.90001 第三方APP重要操作验证
 验证码 action_id: 90001   
 文件名: verification_90001.tpl   
+标题文件名: verification_90001.title   
 变量列表:   
 
 |变量名|解释|注释|
@@ -409,6 +414,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 7.1.1.90002 第三方APP删除内容验证
 验证码 action_id: 90002   
 文件名: verification_90002.tpl   
+标题文件名: verification_90002.title   
 变量列表:   
 
 |变量名|解释|注释|
