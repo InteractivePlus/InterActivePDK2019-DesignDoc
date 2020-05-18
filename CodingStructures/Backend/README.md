@@ -289,6 +289,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |50003|Email Service Auth Failure|邮件系统登录失败|-|-|
 |50004|SMS Service Unavailable|短信系统繁忙|-|-|
 |50005|SMS Service Auth Failure|短信系统登录失败|-|-|
+|50006|General Message Sending Error|发送失败|-|-|
 |50006|DB Conn Error|数据库连接错误|-|-|
 |50007|DB Query Error|数据库提交/获取数据错误|-|errNo,errMsg|
 |50008|DB Timeout Error|数据库超时错误|-|-|
@@ -303,6 +304,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |80001|Verification Code expired|验证码已超时|-|-|
 |80002|Verification Code not found|验证码不存在|-|-|
 |80003|Verification Code already exist|验证码已存在|-|-|
+|80004|Cannot send in this method|当前验证码类型无法以此方式发送|-|sent_method, action_id|
 
 ## 7.0 邮箱/短信信息发送
 
