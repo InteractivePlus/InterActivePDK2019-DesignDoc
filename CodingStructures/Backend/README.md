@@ -90,6 +90,8 @@ To be filled.
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|唯一索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
+|locale|CHAR(6)|用户的语言|zh_CN, en_US, en_GB, etc|-|
+|area|CHAR(2)|用户的地区|CN, US, GB, etc.|-|
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|索引|
 |phone_number|CHAR(15)|用户绑定手机号|E.164|索引|
 |settings|TEXT|用户设置|gzcompress(original json object)|-|
