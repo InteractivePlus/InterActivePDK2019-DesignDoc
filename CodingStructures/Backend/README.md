@@ -47,8 +47,6 @@ To be filled.
 |PASSWORD_MINLEN|密码最小长度|int|
 |PASSWORD_MAXLEN|密码最大长度|int|
 |PASSWORD_REGEX|密码合法性验证正则(可留空)|string|
-|LOGIN_SINGLEIPMAXTRIAL_COUNT|单个IP在固定时间里最多尝试错误登录几次|int|
-|LOGIN_SINGLEIPMAXTRIAL_DURATION|上面变量的固定时间长度(秒)|int|
 |AVATOR_MAX_SIZE|用户头像最大大小(kB)|int|
 |PASSWORD_SALT|密码加密Salt|string|
 |TOKEN_SALT|TOKEN加密Salt|string|
