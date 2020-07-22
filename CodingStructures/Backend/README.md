@@ -293,7 +293,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 6.1.1.10001 邮箱验证模版
 发送方式: EMAIL   
 验证码 action_id: 10001   
-文件名: verification_10001.html   
+文件名: verification_10001.tpl   
 标题文件名: verification_10001.title   
 变量列表:   
 
@@ -308,7 +308,8 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 ##### 6.1.1.10002 手机验证模板
 发送方式: SMS \| PHONE_CALL   
 验证码 action_id: 10002   
-文件名: verification_10002.html   
+文件名: verification_10002.tpl   
+标题文件名: verification_10002.title   
 
 变量列表: 
 
