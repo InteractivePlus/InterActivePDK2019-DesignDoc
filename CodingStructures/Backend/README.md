@@ -139,7 +139,7 @@ To be filled.
 |sent_method|TINYINT|发送方式|-|0 = 未发送, 1 = 邮箱, 2 = 手机短信, 3 = 电话|
 |issue_time|INT|验证码分配时间|time()|-|
 |expire_time|INT|验证码过期时间|time() + `VERIFICATION_CODE_AVAILABLE_DURATION`|-|
-|used|TINYINT(1)|是否使用过了|-|1(true), 0(false)|
+|used_stage|TINYINT|是否使用过了|-|1(used), 0(valid), -1(invalid)|
 |trigger_client_ip|VARCHAR(40)|用户请求此验证码时的ip地址|-|ipv4/ipv6|
 
 ## 5.0 数据库内部表键数据结构定义
