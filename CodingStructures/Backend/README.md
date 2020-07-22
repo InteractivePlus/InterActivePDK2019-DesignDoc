@@ -363,6 +363,7 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 |userDisplayName|用户展示名|-|ANY_METHOD|
 |userPhone|用户手机|-|ANY_METHOD|
 |veriCode|验证码|-|ANY_METHOD|
+|veriLink|验证地址|-|SMS|
 
 ##### 7.1.1.20001 密码修改申请验证模版
 发送方式: EMAIL \| SMS \| PHONE_CALL   
@@ -475,9 +476,10 @@ Setting::setPDKSetting(
 变量名: USER_SYSTEM_LINKS   
 格式: 多语言变量, 每个LOCALE_NAME中都是一个JSON Object, 键位如下:   
 
-|URL键位|数据类型|解释|例子|GET变量|
+|URL键位|数据类型|解释|例子|模板变量|
 |-|-|-|-|-|
 |confirm_email_url|string|确认邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/confirmEmail/?veri_code={{veri_code}}|veri_code|
+|confirm_phone_url|string|确认手机的时候点击链接的URL模板|https://user.interactiveplus.org/zh_CN/confirmPhone/?veri_code={{veri_code}}|veri_code|
 |confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code={{veri_code}}|veri_code|
 |confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code={{veri_code}}|veri_code|
 
