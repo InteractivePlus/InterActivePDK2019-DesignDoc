@@ -266,7 +266,153 @@ To be filled.
 |-|-|-|
 |client_ip_addr|String|删除内容的用户IP|
 
-## 6.0 PDK Core 错误代码表
+## 6.0 邮箱/短信信息发送
+
+发送方式在核心支持库中只定义接口, 实现将在外部Wrapper中实现发送类.   
+邮箱: 自建SMTP / 在线接口如[Mailgun](https://www.mailgun.com/)   
+SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)   
+
+### 6.1 邮箱信息发送
+
+每封邮件的正文都用会输出为标准HTML5语言, 即每个邮件正文都会以以下代码开始:   
+
+```html
+<!DOCTYPE html>
+<html>
+`CONTENT`
+</html>
+```
+
+核心库会使用PHP字符串替换, 模版中使用变量需要用{{ variableName }}或{{variableName}}来表示.   
+邮件的模版文件会放在核心库的`/templates/email/` + `LOCALE_NAME` 目录中, 比如`/templates/email/zh_CN/`.      
+手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
+电话的模板文件(TTS)会放在核心库的`/templates/PhoneCall_TTS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
+
+#### 6.1.1 邮件/手机模版
+
+##### 6.1.1.10001 邮箱验证模版
+发送方式: EMAIL   
+验证码 action_id: 10001   
+文件名: verification_10001.html   
+标题文件名: verification_10001.title   
+变量列表:   
+
+|变量名|解释|注释|在哪些发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userEmail|用户邮箱|-|ANY_METHOD|
+|veriLink|验证地址|-|ANY_METHOD|
+
+##### 6.1.1.10002 手机验证模板
+发送方式: SMS \| PHONE_CALL   
+验证码 action_id: 10002   
+文件名: verification_10002.html   
+
+变量列表: 
+
+|变量名|解释|注释|在哪些发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userPhone|用户手机|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|验证地址|-|SMS|
+
+##### 6.1.1.20001 密码修改申请验证模版
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 20001   
+文件名: verification_20001.tpl   
+标题文件名: verification_20001.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往修改密码的URL|-|EMAIL \| SMS|
+
+##### 6.1.1.20002 修改邮箱验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 20002   
+文件名: verification_20002.tpl   
+标题文件名: verification_20002.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userEmail|用户邮箱|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往确认邮箱修改的URL|-|EMAIL \| SMS|
+|newEmail|申请更改到的新邮箱|-|ANY_METHOD|
+
+##### 6.1.1.20003 修改手机验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 20003   
+文件名: verification_20003.tpl   
+标题文件名: verification_20003.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userPhone|用户手机号码|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往确认手机号码修改的URL|-|EMAIL \| SMS|
+|newPhone|申请更改到的新手机号码|-|ANY_METHOD|
+
+##### 6.1.1.30001 管理员操作验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 30001   
+文件名: verification_30001.tpl   
+标题文件名: verification_30001.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+
+##### 6.1.1.90001 第三方APP重要操作验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 90001   
+文件名: verification_90001.tpl   
+标题文件名: verification_90001.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|APP系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+
+##### 6.1.1.90002 第三方APP删除内容验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
+验证码 action_id: 90002   
+文件名: verification_90002.tpl   
+标题文件名: verification_90002.title   
+变量列表:   
+
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|APP系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+
+## 7.0 PDK Core 错误代码表
 
 InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKException`类的实例. PDK Exception支持声明 `Error_Code(错误代码)`, `Message(详细信息)`, `Params(错误参数)`, 和 `Previous(上一个堆栈中的错误)` 4个参数. 
 
@@ -310,152 +456,6 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |80003|Verification Code already exist|验证码已存在|-|-|
 |80004|Cannot send in this method|当前验证码类型无法以此方式发送|-|sent_method, action_id|
 
-## 7.0 邮箱/短信信息发送
-
-发送方式在核心支持库中只定义接口, 实现将在外部Wrapper中实现发送类.   
-邮箱: 自建SMTP / 在线接口如[Mailgun](https://www.mailgun.com/)   
-SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)   
-
-### 7.1 邮箱信息发送
-
-每封邮件的正文都用会输出为标准HTML5语言, 即每个邮件正文都会以以下代码开始:   
-
-```html
-<!DOCTYPE html>
-<html>
-`CONTENT`
-</html>
-```
-
-核心库会使用PHP字符串替换, 模版中使用变量需要用{{ variableName }}或{{variableName}}来表示.   
-邮件的模版文件会放在核心库的`/templates/email/` + `LOCALE_NAME` 目录中, 比如`/templates/email/zh_CN/`.      
-手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
-电话的模板文件(TTS)会放在核心库的`/templates/PhoneCall_TTS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
-
-#### 7.1.1 邮件/手机模版
-
-##### 7.1.1.10001 邮箱验证模版
-发送方式: EMAIL   
-验证码 action_id: 10001   
-文件名: verification_10001.html   
-标题文件名: verification_10001.title   
-变量列表:   
-
-|变量名|解释|注释|在哪些发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|userEmail|用户邮箱|-|ANY_METHOD|
-|veriLink|验证地址|-|ANY_METHOD|
-
-##### 7.1.1.10002 手机验证模板
-发送方式: SMS \| PHONE_CALL   
-验证码 action_id: 10002   
-文件名: verification_10002.html   
-
-变量列表: 
-
-|变量名|解释|注释|在哪些发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|userPhone|用户手机|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-|veriLink|验证地址|-|SMS|
-
-##### 7.1.1.20001 密码修改申请验证模版
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 20001   
-文件名: verification_20001.tpl   
-标题文件名: verification_20001.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-|veriLink|可以前往修改密码的URL|-|EMAIL \| SMS|
-
-##### 7.1.1.20002 修改邮箱验证
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 20002   
-文件名: verification_20002.tpl   
-标题文件名: verification_20002.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|userEmail|用户邮箱|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-|veriLink|可以前往确认邮箱修改的URL|-|EMAIL \| SMS|
-|newEmail|申请更改到的新邮箱|-|ANY_METHOD|
-
-##### 7.1.1.20003 修改手机验证
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 20003   
-文件名: verification_20003.tpl   
-标题文件名: verification_20003.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|userPhone|用户手机号码|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-|veriLink|可以前往确认手机号码修改的URL|-|EMAIL \| SMS|
-|newPhone|申请更改到的新手机号码|-|ANY_METHOD|
-
-##### 7.1.1.30001 管理员操作验证
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 30001   
-文件名: verification_30001.tpl   
-标题文件名: verification_30001.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|用户系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-
-##### 7.1.1.90001 第三方APP重要操作验证
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 90001   
-文件名: verification_90001.tpl   
-标题文件名: verification_90001.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|APP系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-
-##### 7.1.1.90002 第三方APP删除内容验证
-发送方式: EMAIL \| SMS \| PHONE_CALL   
-验证码 action_id: 90002   
-文件名: verification_90002.tpl   
-标题文件名: verification_90002.title   
-变量列表:   
-
-|变量名|解释|注释|在哪种发送方式中可见|
-|-|-|-|-|
-|systemName|APP系统名称|-|ANY_METHOD|
-|username|用户名|-|ANY_METHOD|
-|userDisplayName|用户展示名|-|ANY_METHOD|
-|veriCode|验证码|-|ANY_METHOD|
-
 ## 8.0 设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
 每个多语言变量都是一个多键位JSON Object(PHP中用array), 每一个键位代表一种语言的内容.    
@@ -480,6 +480,7 @@ Setting::setPDKSetting(
 |-|-|-|-|-|
 |confirm_email_url|string|确认邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/confirmEmail/?veri_code={{veri_code}}|veri_code|
 |confirm_phone_url|string|确认手机的时候点击链接的URL模板|https://user.interactiveplus.org/zh_CN/confirmPhone/?veri_code={{veri_code}}|veri_code|
+|change_pwd_url|string|修改密码时点击链接可以来这里修改密码|https://user.interactiveplus.org/zh_CN/changePassword?veri_code={{veri_code}}|veri_code|
 |confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code={{veri_code}}|veri_code|
 |confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code={{veri_code}}|veri_code|
 
