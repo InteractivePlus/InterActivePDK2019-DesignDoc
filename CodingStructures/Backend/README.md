@@ -136,7 +136,7 @@ To be filled.
 |username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
-|sent_method|TINYINT|发送方式|-|0 = 未发送, 1 = 邮箱, 2 = 手机|
+|sent_method|TINYINT|发送方式|-|0 = 未发送, 1 = 邮箱, 2 = 手机短信, 3 = 电话|
 |issue_time|INT|验证码分配时间|time()|-|
 |expire_time|INT|验证码过期时间|time() + `VERIFICATION_CODE_AVAILABLE_DURATION`|-|
 |used|TINYINT(1)|是否使用过了|-|1(true), 0(false)|
@@ -327,106 +327,131 @@ SMS: 在线接口如[短信通](http://www.dxton.com/jiekou.html)
 
 核心库会使用PHP字符串替换, 模版中使用变量需要用{{ variableName }}或{{variableName}}来表示.   
 邮件的模版文件会放在核心库的`/templates/email/` + `LOCALE_NAME` 目录中, 比如`/templates/email/zh_CN/`.      
-手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中.   
+手机的模版文件会放在核心库的`/templates/SMS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
+电话的模板文件(TTS)会放在核心库的`/templates/PhoneCall_TTS/` + `LOCALE_NAME` 目录中, 不包括标题文件   
 
-#### 7.1.1 邮件模版
+#### 7.1.1 邮件/手机模版
 
 ##### 7.1.1.10001 邮箱验证模版
+发送方式: EMAIL   
 验证码 action_id: 10001   
 文件名: verification_10001.html   
 标题文件名: verification_10001.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|用户系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|veriLink|验证地址|-|
+|变量名|解释|注释|在哪些发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userEmail|用户邮箱|-|ANY_METHOD|
+|veriLink|验证地址|-|ANY_METHOD|
+
+##### 7.1.1.10002 手机验证模板
+发送方式: SMS \| PHONE_CALL   
+验证码 action_id: 10002   
+文件名: verification_10002.html   
+
+变量列表: 
+
+|变量名|解释|注释|在哪些发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userPhone|用户手机|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
 
 ##### 7.1.1.20001 密码修改申请验证模版
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 20001   
 文件名: verification_20001.tpl   
 标题文件名: verification_20001.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|用户系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|veriCode|验证码|-|
-|veriLink|可以前往修改密码的URL|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往修改密码的URL|-|EMAIL \| SMS|
 
 ##### 7.1.1.20002 修改邮箱验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 20002   
 文件名: verification_20002.tpl   
 标题文件名: verification_20002.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|用户系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|userEmail|用户邮箱|-|
-|veriCode|验证码|-|
-|newEmail|申请更改到的新邮箱|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userEmail|用户邮箱|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往确认邮箱修改的URL|-|EMAIL \| SMS|
+|newEmail|申请更改到的新邮箱|-|ANY_METHOD|
 
 ##### 7.1.1.20003 修改手机验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 20003   
 文件名: verification_20003.tpl   
 标题文件名: verification_20003.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|用户系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|userPhone|用户手机号码|-|
-|veriCode|验证码|-|
-|newPhone|申请更改到的新手机号码|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|userPhone|用户手机号码|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
+|veriLink|可以前往确认手机号码修改的URL|-|EMAIL \| SMS|
+|newPhone|申请更改到的新手机号码|-|ANY_METHOD|
 
 ##### 7.1.1.30001 管理员操作验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 30001   
 文件名: verification_30001.tpl   
 标题文件名: verification_30001.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|用户系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|veriCode|验证码|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|用户系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
 
 ##### 7.1.1.90001 第三方APP重要操作验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 90001   
 文件名: verification_90001.tpl   
 标题文件名: verification_90001.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|APP系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|veriCode|验证码|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|APP系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
 
 ##### 7.1.1.90002 第三方APP删除内容验证
+发送方式: EMAIL \| SMS \| PHONE_CALL   
 验证码 action_id: 90002   
 文件名: verification_90002.tpl   
 标题文件名: verification_90002.title   
 变量列表:   
 
-|变量名|解释|注释|
-|-|-|-|
-|systemName|APP系统名称|-|
-|username|用户名|-|
-|userDisplayName|用户展示名|-|
-|veriCode|验证码|-|
+|变量名|解释|注释|在哪种发送方式中可见|
+|-|-|-|-|
+|systemName|APP系统名称|-|ANY_METHOD|
+|username|用户名|-|ANY_METHOD|
+|userDisplayName|用户展示名|-|ANY_METHOD|
+|veriCode|验证码|-|ANY_METHOD|
 
 ## 8.0 设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
