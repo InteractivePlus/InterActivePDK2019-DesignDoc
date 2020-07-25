@@ -232,9 +232,12 @@ To be filled.
 |new_email|String|新邮箱地址, 留空为删除|
 |client_ip_addr|String|修改邮箱的用户IP|
 
-自动触发的Action执行步骤:
+自动触发的Action执行步骤:   
+
 1. 更改原用户邮箱地址为新邮箱地址, 设置用户状态为邮箱未验证
 2. 生成一个新的VeriCode用以验证新的邮箱地址
+
+Note: 由于架构限制, 第二步需要由CoreLib以外的Wrapper进行调用.   
 
 ##### 5.3.2.20003 修改手机验证
 
@@ -246,9 +249,12 @@ To be filled.
 |new_phone|String|新手机, 留空为删除|
 |client_ip_addr|String|修改手机的用户IP|
 
-自动触发的Action执行步骤:
+自动触发的Action执行步骤:   
+
 1. 更改原用户手机为新手机号, 设置用户状态为手机未验证
 2. 生成一个新的VeriCode用以验证新的手机号
+
+Note: 由于架构限制, 第二步需要由CoreLib以外的Wrapper进行调用.   
 
 ##### 5.3.2.30001 管理员操作验证
 类型: `JSON Object`   
