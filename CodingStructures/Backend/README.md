@@ -455,6 +455,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |80002|Verification Code not found|验证码不存在|-|-|
 |80003|Verification Code already exist|验证码已存在|-|-|
 |80004|Cannot send in this method|当前验证码类型无法以此方式发送|-|sent_method, action_id|
+|80005|Verification Code Action Execution Error|当前验证码的自动触发机制产生错误|-|errMsg|
 
 ## 8.0 设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
