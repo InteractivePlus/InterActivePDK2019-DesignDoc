@@ -86,6 +86,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
+|uid|BIGINT UNSIGNED NOT NULL AUTO_INCREMENT|用户UID|-|唯一索引|
 |username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|唯一索引|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|唯一索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
