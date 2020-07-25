@@ -57,6 +57,7 @@ To be filled.
 |DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|string|
 |DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|array[string=>unknown]|
 |ALLOW_TOKEN_IP_CHANGE|允许用户登录状态在更改IP后继续使用|bool|
+|ALLOW_VERICODE_IP_CHANGE|允许用户在申请发送验证码和使用验证码时更改IP|bool|
 |DEBUG_MODE|是否在调试模式中|bool|
 
 ## 4.0 数据库结构定义
