@@ -432,6 +432,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |30001|Credentials not correct|验证凭据不正确|-|-|
 |30002|Credentials not formatted|验证凭据与规定格式不符|-|credential="`database_col_name`"|
 |30003|Permission Denied|无权限|-|-|
+|30004|IP Address not match|操作时IP不一致|-|-|
 |40001|Spam Message|垃圾信息|-|-|
 |40002|Operation Too Frequent|操作过于频繁|-|-|
 |50001|System Busy|系统繁忙|-|-|
