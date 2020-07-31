@@ -49,6 +49,8 @@ To be filled.
 |PASSWORD_REGEX|密码合法性验证正则(可留空)|string|
 |AVATOR_MAX_SIZE|用户头像最大大小(kB)|int|
 |PASSWORD_SALT|密码加密Salt|string|
+|OAUTH_ENCRYPTION_KEY|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的Encryption Key|string|
+|OAUTH_JWT_KEYS|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的公私钥匙|array('public_key'=>'...','private_key'=>'...')|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
 |DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|string|
@@ -506,6 +508,4 @@ Setting::setPDKSetting(
 ### 9.1 总览
 
 OAuth2.0 在 [InterActivePDK2020-CoreLib](https://github.com/InteractivePlus/InteractivePDK2020-CoreLib) 中将使用 [league/oauth2-server](https://github.com/thephpleague/oauth2-server/), 因为关于OAuth2的Doc实在是太多了, 我们团队没有任何想法自己实现一个.   
-
-### 9.2 库相关
 
