@@ -503,9 +503,45 @@ Setting::setPDKSetting(
 |confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code={{veri_code}}|veri_code|
 |confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code={{veri_code}}|veri_code|
 
-## 9.0 OAuth2.0相关定义
+## 9.0 OAuth2.0和第三方APP相关定义
 
 ### 9.1 总览
 
 OAuth2.0 在 [InterActivePDK2020-CoreLib](https://github.com/InteractivePlus/InteractivePDK2020-CoreLib) 中将使用 [league/oauth2-server](https://github.com/thephpleague/oauth2-server/), 因为关于OAuth2的Doc实在是太多了, 我们团队没有任何想法自己实现一个.   
 
+### 9.2 APP类型定义
+
+APP根据来源分类: 
+
+|类型|解释|
+|-|-|
+|1stParty|第一方APP, 既形随意动官方APP|
+|trusted-3rdParty|被信任的第三方APP|
+|3rdParty|普通第三方APP|
+
+APP根据用途分类:
+
+|类型|解释|
+|-|-|
+|public|公共APP, 既APP没有后端|
+|private|私人APP, APP拥有后端服务器|
+
+注: 不同用途会导致授权方式
+
+### 9.2 授权方式(Grant Type)定义
+
+|授权方式|授权方式详细信息|可用来源|可用类型|注释|
+|-|-|-|-|-|
+|Authorization Code|Client申请Authorization Code后申请Access Token|ALL|private|使用PKCE密钥交换, 需要提交client_id和client_secret|
+|Explicit Authorization Code|Client申请Authorization Code后申请Access Token|ALL|public|使用PKCE密钥交换, 只需要提交client_id|
+|Refresh Token|Client申请通过之前获取的Refresh Token来获取新的Access Token和Refresh Token对|ALL|ALL|如果类型为private, 则需要提供client_secret|
+
+### 9.3 授权范围定义
+
+|scope identifier|范围详细信息|可用grant_type|注释|
+|basic|用户基础信息, 包括用户名, 头像, 昵称, 用户签名, 语言和地区数据, 不包括联系方式|ALL|-|
+|push_notif|APP可以给用户发送推送信息(APP, 微信公众号)|ALL|-|
+|email_notif|APP可以给用户推送邮箱信息, 但不能获取用户具体联系方式|ALL|-|
+|sms_notif|APP可以给用户发送手机短信, 但不能获取用户具体联系方式|ALL|-|
+|email|用户邮箱地址|ALL|-|
+|phone_num|用户手机号|ALL|-|
