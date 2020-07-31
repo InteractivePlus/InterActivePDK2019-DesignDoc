@@ -123,7 +123,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |token|CHAR(32)|用户分配到的TOKEN|md5(username + rand(0, 10000) + time(), `TOKEN_SALT`)|唯一索引|
-|username|VARCHAR(`USERNAME_MAXLEN`)|token关联的用户名|-|索引|
+|uid|BIGINT UNSIGNED NOT NULL|token关联的用户uid|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
 |renew_time|INT|token更新时间|time()|-|
@@ -134,7 +134,7 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |veri_code|CHAR(32)|验证码|md5(username + rand(0,10000) + time() + `VERIFICATION_CODE_SALT`)|唯一索引|
-|username|VARCHAR(`USERNAME_MAXLEN`)|验证码关联的用户名|-|索引|
+|uid|BIGINT UNSIGNED NOT NULL|验证码关联的用户uid|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
 |sent_method|TINYINT|发送方式|-|0 = 未发送, 1 = 邮箱, 2 = 手机短信, 3 = 电话|
