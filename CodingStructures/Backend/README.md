@@ -49,8 +49,6 @@ To be filled.
 |PASSWORD_REGEX|密码合法性验证正则(可留空)|string|
 |AVATOR_MAX_SIZE|用户头像最大大小(kB)|int|
 |PASSWORD_SALT|密码加密Salt|string|
-|TOKEN_SALT|TOKEN加密Salt|string|
-|VERIFICATION_CODE_SALT|验证码加密SALT|string|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
 |DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|string|
@@ -122,7 +120,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|token|CHAR(32)|用户分配到的TOKEN|md5(username + rand(0, 10000) + time(), `TOKEN_SALT`)|唯一索引|
+|token|CHAR(32)|用户分配到的TOKEN|bin2hex(random_bytes(16))|唯一索引|
 |uid|BIGINT UNSIGNED NOT NULL|token关联的用户uid|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
@@ -133,7 +131,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|veri_code|CHAR(32)|验证码|md5(username + rand(0,10000) + time() + `VERIFICATION_CODE_SALT`)|唯一索引|
+|veri_code|CHAR(32)|验证码|bin2hex(random_bytes(16))|唯一索引|
 |uid|BIGINT UNSIGNED NOT NULL|验证码关联的用户uid|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
@@ -167,8 +165,10 @@ To be filled.
 
 |键位|数据类型|解释|算法|注释|
 |-|-|-|-|-|
+|official_push_notifications|boolean|是否接收第一方APP的消息通知|-|此为总开关, 可单独控制|
 |official_updates|boolean|是否接收形随意动官方新闻更新|-|-|
 |official_promotions|boolean|是否接收形随意动官方产品促销信息|-|-|
+|third_party_push_notifications|boolean|是否接收第三方APP的消息通知|-|此为总开关, 可单独控制|
 |third_party_updates|boolean|是否接收第三方软件新闻更新|-|此为总开关, 用户要控制单独开关可在授权页面更改|
 |third_party_promotions|boolean|是否接收第三方软件促销信息|-|此为总开关, 用户要控制单独开关可在授权页面更改|
 
@@ -176,8 +176,10 @@ To be filled.
 
 |键位|数据类型|解释|算法|注释|
 |-|-|-|-|-|
+|official_push_notifications|boolean|是否接收第一方APP的消息通知|-|此为总开关, 可单独控制|
 |official_updates|boolean|是否接收形随意动官方新闻更新|-|-|
 |official_promotions|boolean|是否接收形随意动官方产品促销信息|-|-|
+|third_party_push_notifications|boolean|是否接收第三方APP的消息通知|-|此为总开关, 可单独控制|
 |third_party_updates|boolean|是否接收第三方软件新闻更新|-|此为总开关, 用户要控制单独开关可在授权页面更改|
 |third_party_promotions|boolean|是否接收第三方软件促销信息|-|此为总开关, 用户要控制单独开关可在授权页面更改|
 
@@ -471,7 +473,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |80004|Cannot send in this method|当前验证码类型无法以此方式发送|-|sent_method, action_id|
 |80005|Verification Code Action Execution Error|当前验证码的自动触发机制产生错误|-|errMsg|
 
-## 8.0 设置中的变量数据格式定义
+## 8.0 系统设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
 每个多语言变量都是一个多键位JSON Object(PHP中用array), 每一个键位代表一种语言的内容.    
 键位用标准LOCALE_NAME来表示, 如`zh_CN`, `en_US`.   
@@ -498,4 +500,12 @@ Setting::setPDKSetting(
 |change_pwd_url|string|修改密码时点击链接可以来这里修改密码|https://user.interactiveplus.org/zh_CN/changePassword?veri_code={{veri_code}}|veri_code|
 |confirm_email_change_url|string|确认更改邮箱的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmEmailChange/?veri_code={{veri_code}}|veri_code|
 |confirm_phone_change_url|string|确认更改手机的时候点击链接的URL模版|https://user.interactiveplus.org/zh_CN/ConfirmPhoneChange/?veri_code={{veri_code}}|veri_code|
+
+## 9.0 OAuth2.0相关定义
+
+### 9.1 总览
+
+OAuth2.0 在 [InterActivePDK2020-CoreLib](https://github.com/InteractivePlus/InteractivePDK2020-CoreLib) 中将使用 [league/oauth2-server](https://github.com/thephpleague/oauth2-server/), 因为关于OAuth2的Doc实在是太多了, 我们团队没有任何想法自己实现一个.   
+
+### 9.2 库相关
 
