@@ -143,6 +143,19 @@ To be filled.
 |used_stage|TINYINT|是否使用过了|-|1(used), 0(valid), -1(invalid)|
 |trigger_client_ip|VARCHAR(40)|用户请求此验证码时的ip地址|-|ipv4/ipv6|
 
+#### 4.2.5 app_infos表
+
+|字段名|数据类型|解释|算法|注释|
+|-|-|-|-|-|
+|appuid|BIGINT UNSIGNED NOT NULL AUTO_INCREMENT|APP的uid|-|唯一索引|
+|display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|APP展示名|-|-|
+|client_id|CHAR(32)|APP在使用OAuth API时的client_id|bin2hex(random_bytes(16))|唯一索引|
+|client_secret|CHAR(64)|APP在使用OAuth API时的client_secret|bin2hex(random_bytes(32))|可留空|
+|client_type|UNSIGNED TINYINT|APP类型|-|0 = first party public, 1 = first party private, 2 = trusted third party public, 3 = trusted third party private, 4 = third party public, 5 = third party private|
+|reg_area|CHAR(2)|注册时用户的国家/地区|-|-|
+|reg_time|INT|APP注册时间|time()|-|
+|avatar|CHAR(32)|APP头像MD5|md5(头像数据)|如果是默认头像请留空|
+
 ## 5.0 数据库内部表键数据结构定义
 
 ### 5.1 用户/用户组权限定义
