@@ -156,6 +156,14 @@ To be filled.
 |reg_time|INT|APP注册时间|time()|-|
 |avatar|CHAR(32)|APP头像MD5|md5(头像数据)|如果是默认头像请留空|
 
+#### 5.2.6 app_manage_infos表
+
+|字段名|数据类型|解释|算法|注释|
+|-|-|-|-|-|
+|appuid|BIGINT UNSIGNED NOT NULL|APP的uid|-|索引|
+|uid|BIGINT UNSIGNED NOT NULL|用户的uid|-|索引|
+|role|TINYINT|用户角色(对应权限)|-|-|
+
 ## 5.0 数据库内部表键数据结构定义
 
 ### 5.1 用户/用户组权限定义
@@ -559,3 +567,17 @@ APP根据用途分类:
 |sms_notif|APP可以给用户发送手机短信, 但不能获取用户具体联系方式|ALL|-|
 |email|用户邮箱地址|ALL|-|
 |phone_num|用户手机号|ALL|-|
+
+### 9.4 APP管理权限
+
+在`app_manage_infos`表中, 每个APP管理员都有相对应的role(角色), 对应不同的管理权限.
+
+|role|详细权限|int value|
+|-|-|-|
+|owner|删除APP及所有admin的权限|5|
+|admin|设置管理员列表以及所有write权限|4|
+|write|设置APP头像, 昵称, 回调地址以及maintain权限|3|
+|maintain|管理工单, 以及read权限|2|
+|read|查看APP头像, 查看日志, 查看工单, 查看APP信息|1|
+
+注: 一个APP只能拥有一个owner, 其他角色人数不限.
