@@ -469,6 +469,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |20004|APP client_id already exist|第三方APP client_id已被占用|-|-|
 |20005|APP display name already exist|-|-|
 |20006|APP Management Relations already exist|第三方APP的管理关系表已经建立|-|-|
+|20007|APP Management Relations non-existant|第三方APP的管理关系表没有建立|-|-|
 |30001|Credentials not correct|验证凭据不正确|-|-|
 |30002|Credentials not formatted|验证凭据与规定格式不符|-|credential="`database_col_name`"|
 |30003|Permission Denied|无权限|-|-|
