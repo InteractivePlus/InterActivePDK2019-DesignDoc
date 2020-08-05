@@ -3,7 +3,7 @@
 
 ---
 
-最新版本: 20200510-0.0.3 A
+最新版本: 20200801-0.0.4 A
 
 ## 1.0 基本概念
 OPENAPI4.1 底层架构致力于简化开发过程中繁琐的代码重合和交互逻辑, 我们希望将每个功能区块完整的区分出来并明确他们之间的界限. 同时底层的交互逻辑应减少与数据库连接的次数, 减少服务器总体压力, 提升性能表现.   
@@ -467,6 +467,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |20002|APP frozen|第三方APP被注销|-|-|
 |20003|APP error|第三方APP内部错误|-|-|
 |20004|APP already exist|第三方APPID已被占用|-|-|
+|20005|APP Management Relations already exist|第三方APP的管理关系表已经建立|-|-|
 |30001|Credentials not correct|验证凭据不正确|-|-|
 |30002|Credentials not formatted|验证凭据与规定格式不符|-|credential="`database_col_name`"|
 |30003|Permission Denied|无权限|-|-|
