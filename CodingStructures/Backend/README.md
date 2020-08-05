@@ -466,8 +466,9 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |20001|APP non-existant|第三方APP不存在|-|-|
 |20002|APP frozen|第三方APP被注销|-|-|
 |20003|APP error|第三方APP内部错误|-|-|
-|20004|APP already exist|第三方APPID已被占用|-|-|
-|20005|APP Management Relations already exist|第三方APP的管理关系表已经建立|-|-|
+|20004|APP client_id already exist|第三方APP client_id已被占用|-|-|
+|20005|APP display name already exist|-|-|
+|20006|APP Management Relations already exist|第三方APP的管理关系表已经建立|-|-|
 |30001|Credentials not correct|验证凭据不正确|-|-|
 |30002|Credentials not formatted|验证凭据与规定格式不符|-|credential="`database_col_name`"|
 |30003|Permission Denied|无权限|-|-|
@@ -504,13 +505,12 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 e.g.  
 
 ```PHP
-Setting::setPDKSetting(
-    'USER_SYSTEM_NAME',
-    array(
+class Setting{
+    const USER_SYSTEM_NAME = array(
         'zh_CN' => '幽径',
         'en_US' => 'Solitary Trail'
-    )
-);
+    );
+}
 ```
 
 ### 8.2 用户系统回调链接格式
