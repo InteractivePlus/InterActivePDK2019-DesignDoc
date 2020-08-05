@@ -53,6 +53,9 @@ To be filled.
 |OAUTH_JWT_KEYS|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的公私钥匙|array('public_key'=>'...','private_key'=>'...')|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
+|OAUTH_AUTH_CODE_AVAILABLE_DURATION|OAuth接口的授权码有效时间(秒)|int|
+|OAUTH_ACCESS_TOKEN_AVAILABLE_DURATION|OAuth接口的Access Token有效时间(秒)|int|
+|OAUTH_REFRESH_TOKEN_AVAILABLE_DURATION|OAuth接口的Refresh Token有效时间(秒)|int|
 |DEFAULT_COUNTRY|默认国家(CN,GB,US,...)|string|
 |DEFAULT_LOCALE|默认语言(zh_CN, en_US, ...)|string|
 |DEFAULT_GROUP_PERMISSION|默认用户组权限数组(Key=>Value)|array[string=>unknown]|
@@ -76,6 +79,8 @@ To be filled.
 |verification_codes|用户验证码信息储存表|
 |app_infos|第三方APP信息储存表|
 |app_manage_infos|第三方APP管理信息储存表|
+|oauth_authorization_codes|OAuth Auth Code储存表|
+|oauth_tokens|OAuth Access Token / Refresh Token储存表|
 |thirdauth_infos|第三方登录信息储存表|
 |logs|日志信息储存表|
 |avatars|用户头像储存表|
@@ -154,15 +159,43 @@ To be filled.
 |client_type|UNSIGNED TINYINT|APP类型|-|0 = first party public, 1 = first party private, 2 = trusted third party public, 3 = trusted third party private, 4 = third party public, 5 = third party private|
 |reg_area|CHAR(2)|注册时用户的国家/地区|-|-|
 |reg_time|INT|APP注册时间|time()|-|
+|redirect_uri|VARCHAR(500)|APP回调地址|-|-|
 |avatar|CHAR(32)|APP头像MD5|md5(头像数据)|如果是默认头像请留空|
 
-#### 5.2.6 app_manage_infos表
+#### 4.2.6 app_manage_infos表
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |appuid|BIGINT UNSIGNED NOT NULL|APP的uid|-|索引|
 |uid|BIGINT UNSIGNED NOT NULL|用户的uid|-|索引|
 |role|TINYINT|用户角色(对应权限)|-|-|
+
+#### 4.2.7 oauth_authorization_codes表
+
+|字段名|数据类型|解释|算法|注释|
+|-|-|-|-|-|
+|authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|-|
+|appuid|BIGINT UNSIGNED NOT NULL|申请授权的APPUID|-|-|
+|uid|BIGINT UNSIGNED NOT NULL|申请授权的用户UID|-|-|
+|redirect_uri|VARCHAR(500)|回调地址|-|-|
+|issue_time|INT|发布时间|time()|-|
+|expire_time|INT|过期时间|time() + `OAUTH_AUTH_CODE_AVAILABLE_DURATION`|-|
+|scope|VARCHAR(200)|授权范围|-|每个scope用空格分隔|
+|code_challenge|VARCHAR(128)|Code Challenge|-|原文为43-128字符长, S256则是64|
+|challenge_type|TINYINT|Code Challenge类型|-|2 = S256, 1 = plain|
+
+#### 4.2.8 oauth_tokens表
+
+|字段名|数据类型|解释|算法|注释|
+|-|-|-|-|-|
+|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|-|
+|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空|
+|appuid|BIGINT UNSIGNED NOT NULL|授权的APPUID|-|-|
+|uid|BIGINT UNSIGNED NOT NULL|授权的UID|-|-|
+|issue_time|INT|发布时间|time()|-|
+|access_expire_time|INT|Access Token过期时间|time() + `OAUTH_ACCESS_TOKEN_AVAILABLE_DURATION`|-|
+|refresh_expire_time|INT|Refresh Token过期时间|time() + `OAUTH_REFRESH_TOKEN_AVAILABLE_DURATION`|-|
+|scope|VARCHAR(200)|授权范围|-|每个scope用空格分隔|
 
 ## 5.0 数据库内部表键数据结构定义
 
@@ -531,6 +564,11 @@ class Setting{
 ### 9.1 总览
 
 OAuth2.0 在 [InterActivePDK2020-CoreLib](https://github.com/InteractivePlus/InteractivePDK2020-CoreLib) 中将使用 [league/oauth2-server](https://github.com/thephpleague/oauth2-server/), 因为关于OAuth2的Doc实在是太多了, 我们团队没有任何想法自己实现一个.   
+
+参考:   
+1. [OAuth2.0 API接口设计](https://developer.aliyun.com/article/44243)
+2. [OAuth.com](https://www.oauth.com)
+3. [OAuth.net](https://oauth.net/)
 
 ### 9.2 APP类型定义
 
