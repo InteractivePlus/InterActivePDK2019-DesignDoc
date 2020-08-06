@@ -188,8 +188,8 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|大写|
-|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空, 大写|
+|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|小写|
+|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空, 小写|
 |appuid|BIGINT UNSIGNED NOT NULL|授权的APPUID|-|-|
 |uid|BIGINT UNSIGNED NOT NULL|授权的UID|-|-|
 |issue_time|INT|发布时间|time()|-|
