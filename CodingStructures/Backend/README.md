@@ -591,11 +591,11 @@ APP根据用途分类:
 
 ### 9.2 授权方式(Grant Type)定义
 
-|授权方式|授权方式详细信息|可用来源|可用类型|注释|
+|授权方式(response_type)|授权方式详细信息|可用来源|可用类型|注释|
 |-|-|-|-|-|
-|Authorization Code|Client申请Authorization Code后申请Access Token|ALL|private|使用PKCE密钥交换, 需要提交client_id和client_secret|
-|Explicit Authorization Code|Client申请Authorization Code后申请Access Token|ALL|public|使用PKCE密钥交换, 只需要提交client_id|
-|Refresh Token|Client申请通过之前获取的Refresh Token来获取新的Access Token和Refresh Token对|ALL|ALL|如果类型为private, 则需要提供client_secret|
+|Authorization Code(code)|Client申请Authorization Code后申请Access Token|ALL|private|使用PKCE密钥交换, 需要提交client_id和client_secret|
+|Explicit Authorization Code(code)|Client申请Authorization Code后申请Access Token|ALL|public|使用PKCE密钥交换, 只需要提交client_id|
+|Refresh Token(grant_type=refresh_token)|Client申请通过之前获取的Refresh Token来获取新的Access Token和Refresh Token对|ALL|ALL|如果类型为private, 则需要提供client_secret|
 
 ### 9.3 授权范围定义
 
