@@ -95,7 +95,7 @@ To be filled.
 |username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|唯一索引|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|唯一索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
-|password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|-|
+|password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|大写|
 |locale|CHAR(6)|用户的语言|zh_CN, en_US, en_GB, etc|-|
 |area|CHAR(2)|用户的地区|CN, US, GB, etc.|-|
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|索引|
@@ -127,7 +127,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|token|CHAR(32)|用户分配到的TOKEN|bin2hex(random_bytes(16))|唯一索引|
+|token|CHAR(32)|用户分配到的TOKEN|bin2hex(random_bytes(16))|唯一索引, 大写|
 |uid|BIGINT UNSIGNED NOT NULL|token关联的用户uid|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
@@ -138,7 +138,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|veri_code|CHAR(32)|验证码|bin2hex(random_bytes(16))|唯一索引|
+|veri_code|CHAR(32)|验证码|bin2hex(random_bytes(16))|唯一索引,大写|
 |uid|BIGINT UNSIGNED NOT NULL|验证码关联的用户uid|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
@@ -154,8 +154,8 @@ To be filled.
 |-|-|-|-|-|
 |appuid|BIGINT UNSIGNED NOT NULL AUTO_INCREMENT|APP的uid|-|唯一索引|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|APP展示名|-|-|
-|client_id|CHAR(32)|APP在使用OAuth API时的client_id|bin2hex(random_bytes(16))|唯一索引|
-|client_secret|CHAR(64)|APP在使用OAuth API时的client_secret|bin2hex(random_bytes(32))|可留空|
+|client_id|CHAR(32)|APP在使用OAuth API时的client_id|bin2hex(random_bytes(16))|唯一索引,小写|
+|client_secret|CHAR(64)|APP在使用OAuth API时的client_secret|bin2hex(random_bytes(32))|可留空,小写|
 |client_type|UNSIGNED TINYINT|APP类型|-|0 = first party public, 1 = first party private, 2 = trusted third party public, 3 = trusted third party private, 4 = third party public, 5 = third party private|
 |reg_area|CHAR(2)|注册时用户的国家/地区|-|-|
 |reg_time|INT|APP注册时间|time()|-|
@@ -174,22 +174,22 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|-|
+|authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|小写|
 |appuid|BIGINT UNSIGNED NOT NULL|申请授权的APPUID|-|-|
 |uid|BIGINT UNSIGNED NOT NULL|申请授权的用户UID|-|-|
 |redirect_uri|VARCHAR(500)|回调地址|-|-|
 |issue_time|INT|发布时间|time()|-|
 |expire_time|INT|过期时间|time() + `OAUTH_AUTH_CODE_AVAILABLE_DURATION`|-|
 |scope|VARCHAR(200)|授权范围|-|每个scope用空格分隔|
-|code_challenge|VARCHAR(128)|Code Challenge|-|原文为43-128字符长, S256则是64|
+|code_challenge|VARCHAR(128)|Code Challenge|-|原文为43-128字符长, S256则是64,S256保存大写|
 |challenge_type|TINYINT|Code Challenge类型|-|2 = S256, 1 = plain|
 
 #### 4.2.8 oauth_tokens表
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|-|
-|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空|
+|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|大写|
+|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空, 大写|
 |appuid|BIGINT UNSIGNED NOT NULL|授权的APPUID|-|-|
 |uid|BIGINT UNSIGNED NOT NULL|授权的UID|-|-|
 |issue_time|INT|发布时间|time()|-|
