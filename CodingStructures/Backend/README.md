@@ -198,6 +198,17 @@ To be filled.
 |refresh_expire_time|INT|Refresh Token过期时间|time() + `OAUTH_REFRESH_TOKEN_AVAILABLE_DURATION`|-|
 |scope|VARCHAR(200)|授权范围|-|每个scope用空格分隔|
 
+#### 4.2.9 logs表
+
+To be determined
+
+#### 4.2.10 avatars表
+
+|字段名|数据类型|解释|算法|注释|
+|-|-|-|-|-|
+|hash|CHAR(32)|头像MD5|md5(original data)|唯一索引|
+|data|MEDIUMBLOB|头像数据|gzcompress(original data)|-|
+
 ## 5.0 数据库内部表键数据结构定义
 
 ### 5.1 用户/用户组权限定义
