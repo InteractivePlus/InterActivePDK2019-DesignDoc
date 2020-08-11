@@ -133,7 +133,7 @@ To be filled.
 |uid|BIGINT UNSIGNED NOT NULL|token关联的用户uid|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
-|refresh_expire_time|INT|refresh token过期时间|time() + 
+|refresh_expire_time|INT|refresh token过期时间|time() + `REFRESH_TOKEN_AVAILABLE_DURATION`|-|
 |renew_time|INT|token更新时间|time()|-|
 |client_addr|VARCHAR(40)|用户客户端IP地址|original|ipv4/ipv6|
 
