@@ -178,7 +178,7 @@ To be filled.
 |authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|唯一索引, 小写|
 |appuid|BIGINT UNSIGNED NOT NULL|申请授权的APPUID|-|索引|
 |uid|BIGINT UNSIGNED NOT NULL|申请授权的用户UID|-|索引|
-|redirect_uri|VARCHAR(500)|回调地址|-|-|
+|redirect_uri|VARCHAR(500)|回调地址|-|报错时这个字段如果格式不对, 抛出错误代码为30002|
 |issue_time|INT|发布时间|time()|-|
 |expire_time|INT|过期时间|time() + `OAUTH_AUTH_CODE_AVAILABLE_DURATION`|-|
 |scope|VARCHAR(200)|授权范围|-|每个scope用空格分隔|
