@@ -541,6 +541,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |90004|OAuth Access Token non-existant|Access Token不存在|-|-|
 |90005|OAuth Refresh Token already exist|Refresh Token已存在|-|-|
 |90006|OAuth Refresh Token non-existant|Refresh Token不存在|-|-|
+|90100|OAuth Credential Format Incorrect|验证OAuth凭据格式不符|-|credential="`database_col_name`"|
 
 ## 8.0 系统设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
