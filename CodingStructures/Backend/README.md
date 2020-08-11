@@ -49,8 +49,6 @@ To be filled.
 |PASSWORD_REGEX|密码合法性验证正则(可留空)|string|
 |AVATOR_MAX_SIZE|用户头像最大大小(kB)|int|
 |PASSWORD_SALT|密码加密Salt|string|
-|OAUTH_ENCRYPTION_KEY|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的Encryption Key|string|
-|OAUTH_JWT_KEYS|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的公私钥匙|array('public_key'=>'...','private_key'=>'...')|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
 |REFRESH_TOKEN_AVAILABLE_DURATION|刷新TOKEN有效时间(秒)|int|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
