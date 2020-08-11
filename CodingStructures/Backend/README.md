@@ -175,9 +175,9 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|小写|
-|appuid|BIGINT UNSIGNED NOT NULL|申请授权的APPUID|-|-|
-|uid|BIGINT UNSIGNED NOT NULL|申请授权的用户UID|-|-|
+|authorization_code|CHAR(40) NOT NULL|Authorization Code|bin2hex(random_bytes(20))|唯一索引, 小写|
+|appuid|BIGINT UNSIGNED NOT NULL|申请授权的APPUID|-|索引|
+|uid|BIGINT UNSIGNED NOT NULL|申请授权的用户UID|-|索引|
 |redirect_uri|VARCHAR(500)|回调地址|-|-|
 |issue_time|INT|发布时间|time()|-|
 |expire_time|INT|过期时间|time() + `OAUTH_AUTH_CODE_AVAILABLE_DURATION`|-|
@@ -189,10 +189,10 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|小写|
-|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|可以留空, 小写|
-|appuid|BIGINT UNSIGNED NOT NULL|授权的APPUID|-|-|
-|uid|BIGINT UNSIGNED NOT NULL|授权的UID|-|-|
+|access_token|CHAR(40) NOT NULL|Access Token|bin2hex(random_bytes(20))|唯一索引, 小写|
+|refresh_token|CHAR(40)|Refresh Token|bin2hex(random_bytes(20))|索引, 可以留空, 小写|
+|appuid|BIGINT UNSIGNED NOT NULL|授权的APPUID|-|索引|
+|uid|BIGINT UNSIGNED NOT NULL|授权的UID|-|索引|
 |issue_time|INT|发布时间|time()|-|
 |access_expire_time|INT|Access Token过期时间|time() + `OAUTH_ACCESS_TOKEN_AVAILABLE_DURATION`|-|
 |refresh_expire_time|INT|Refresh Token过期时间|time() + `OAUTH_REFRESH_TOKEN_AVAILABLE_DURATION`|-|
