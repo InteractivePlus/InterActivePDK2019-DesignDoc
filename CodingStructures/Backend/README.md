@@ -529,6 +529,9 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |70001|Token expired|登录凭据已超时|-|-|
 |70002|Token not found|登录凭据不存在|-|-|
 |70003|Token already exist|登录凭据ID已存在|-|-|
+|70004|Refresh Token expired|刷新凭据已超时|-|-|
+|70005|Refresh Token not found|刷新凭据不存在|-|-|
+|70006|Refresh Token already exist|刷新凭据已存在|-|-|
 |80001|Verification Code expired|验证码已超时|-|-|
 |80002|Verification Code not found|验证码不存在|-|-|
 |80003|Verification Code already exist|验证码已存在|-|-|
