@@ -52,6 +52,7 @@ To be filled.
 |OAUTH_ENCRYPTION_KEY|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的Encryption Key|string|
 |OAUTH_JWT_KEYS|符合[OAuth2-Server安装指令](https://oauth2.thephpleague.com/installation/)的公私钥匙|array('public_key'=>'...','private_key'=>'...')|
 |TOKEN_AVAILABLE_DURATION|TOKEN有效时间(秒)|int|
+|REFRESH_TOKEN_AVAILABLE_DURATION|刷新TOKEN有效时间(秒)|int|
 |VERIFICATION_CODE_AVAILABLE_DURATION|验证码有效时间(秒)|int|
 |OAUTH_AUTH_CODE_AVAILABLE_DURATION|OAuth接口的授权码有效时间(秒)|int|
 |OAUTH_ACCESS_TOKEN_AVAILABLE_DURATION|OAuth接口的Access Token有效时间(秒)|int|
@@ -127,10 +128,12 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|token|CHAR(32)|用户分配到的TOKEN|bin2hex(random_bytes(16))|唯一索引, 大写|
+|token|CHAR(32) NOT NULL|用户分配到的TOKEN|bin2hex(random_bytes(16))|唯一索引, 大写|
+|refresh_token|CHAR(32) NOT NULL|用户分配到的刷新TOKEN|bin2hex(random_bytes(16))|大写, 唯一索引|
 |uid|BIGINT UNSIGNED NOT NULL|token关联的用户uid|-|索引|
 |issue_time|INT|token分配时间|time()|-|
 |expire_time|INT|token过期时间|time() + `TOKEN_AVAILABLE_DURATION`|-|
+|refresh_expire_time|INT|refresh token过期时间|time() + 
 |renew_time|INT|token更新时间|time()|-|
 |client_addr|VARCHAR(40)|用户客户端IP地址|original|ipv4/ipv6|
 
