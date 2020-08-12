@@ -15,7 +15,10 @@ API域名: pdkapi.interactiveplus.org/
 ### 1.1 API URL 细则
 
 所有API的URL皆使用以下的命名规则:   
-https://pdkapi.interactiveplus.org/v`版本号`/`API所属类型`/`操作对象`/`可拓展内容`   
+
+```
+https://pdkapi.interactiveplus.org/版本号/API所属类型/操作对象/可拓展内容
+``` 
 
 让我们来看下下面的例子:   
 ```
@@ -34,10 +37,12 @@ https://pdkapi.interactiveplus.org/v1/interactiveLiveID/token
 GET   
 
 URL:   
-/v1/interactiveLiveID/token   
 
-Captcha ActionID:   
-1   
+```
+/v1/interactiveLiveID/token   
+```
+
+Captcha ActionID: 1   
 
 附带GET参数:   
 
