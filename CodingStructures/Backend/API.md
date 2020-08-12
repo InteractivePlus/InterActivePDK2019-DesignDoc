@@ -56,5 +56,6 @@ Captcha ActionID: 1
 返回HTTP Status Code:   
 
 |Status Code|解释|
+|-|-|
 |200|请求完全正常|
 |400|请求中部分参数格式不正确或者没有填写,或者验证码填写错误|
