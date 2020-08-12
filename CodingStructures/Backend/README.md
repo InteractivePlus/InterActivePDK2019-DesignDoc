@@ -207,7 +207,7 @@ To be determined
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|hash|CHAR(32)|头像MD5|md5(original data)|唯一索引|
+|hash|CHAR(32)|头像MD5|md5(original data)|唯一索引, 全小写|
 |data|MEDIUMBLOB|头像数据|gzcompress(original data)|-|
 
 ## 5.0 数据库内部表键数据结构定义
@@ -554,6 +554,7 @@ InteractivePDK后端实现中, 核心支持库扔出的异常都会是`PDKExcept
 |90005|OAuth Refresh Token already exist|Refresh Token已存在|-|-|
 |90006|OAuth Refresh Token non-existant|Refresh Token不存在|-|-|
 |90100|OAuth Credential Format Incorrect|验证OAuth凭据格式不符|-|credential="`database_col_name`"|
+|100001|Avatar Hash non-existant|头像哈希不存在|-|-|
 
 ## 8.0 系统设置中的变量数据格式定义
 ### 8.1 多语言变量格式(MultiLang)
