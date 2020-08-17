@@ -29,6 +29,51 @@ https://pdkapi.interactiveplus.org/v1/interactiveLiveID/token
 
 官网API定义了和形随意动用户系统前端(InterActiveLiveID)交互所需的所有API.
 
+### 2.1 基础API
+
+#### 2.1.1 获取新验证码API
+
+请求方法: `GET`      
+
+URL:   
+
+```
+/v1/Common/captcha   
+```
+
+附带GET参数:   
+
+|参数名|类型|解释|
+|-|-|-|
+|actionID|int|验证码用途|
+|clientID|string|第三方APP ClientID(如果用于官网,则留空)|
+|token|string|用户token(可选)|
+
+返回HTTP Status Code:   
+
+|Status Code|解释|
+|-|-|
+|200|请求完全正常|
+|400|请求中部分参数格式不正确或者没有填写|
+|401|请求中token不正确|
+
+返回 HTTP Body JSON数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|errCode|int|错误代码|-|0 = 无错误|
+|errMessage|string|错误详情|-|-|
+|captchaInfo|array|验证码详细信息|-|仅在无错误时提供|
+
+captchaInfo键位数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|captchaWidth|int|验证码宽|-|单位为像素(pixels)|
+|captchaHeight|int|验证码高|-|px|
+|captchaData|string|验证码数据|base64_encode(JpegData)|-|
+|expires|int|过期UNIX时间戳|-|UTC Unix Timestamp|
+
 ### 2.1 通用用户API
 
 #### 2.1.1 登录API
@@ -41,7 +86,7 @@ URL:
 /v1/interactiveLiveID/token   
 ```
 
-Captcha ActionID: `1`   
+Captcha ActionID: `10001`   
 
 附带GET参数:   
 

@@ -677,8 +677,7 @@ APP根据用途分类:
 |10011|更改邮箱操作|uid|
 |10012|申请验证码操作|uid, actionID, action_param, send_method, \[veri_code\]|
 |10013|使用验证码操作|uid, veri_code|
-|20001|创建APP操作|uid, \[appuid\], displayName, \[clientID\], \[clientSecret\], \[clientType
-\], regArea, BrowserUA|
+|20001|创建APP操作|uid, \[appuid\], displayName, \[clientID\], \[clientSecret\], \[clientType\], regArea, BrowserUA|
 |20002|修改APP信息操作|uid, appuid|
 |20003|更改APP管理列表操作|uid, appuid|
 |20004|转让APP操作|uid, appuid, newOwnerUID|
