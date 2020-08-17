@@ -212,7 +212,10 @@ To be filled.
 |time|int|操作时间|-|索引|
 |logLevel|int|日志等级|-|EMERGENCY = 8, ALERT = 7, CRITICAL = 6, ERROR = 5, WARNING = 4, NOTICE = 3, INFO = 2, DEBUG = 1|
 |message|TEXT|日志信息|-|-|
+|success|TINYINT|成功?|-|0 = no, 1 = yes|
+|PDKExceptionCode|INT|PDK错误代码|-|无错误为0|
 |context|MEDIUMTEXT|日志详细信息|-|JSON Object|
+|clientAddr|VARCHAR(40)|客户端IP|-|-|
 
 #### 4.2.10 avatars表
 
@@ -659,20 +662,24 @@ APP根据用途分类:
 
 ## 10.0 Log中ActionID的定义
 
-Note: 所有Context中均有全局变量如下
-
-|context变量|类型|解释|
-|-|-|-|
-|success|bool|操作是否成功|
-|PDKExceptionCode|int|PDK内部错误代码, 若无错误填写0|
-|clientAddr|客户端IP地址|
-
 |ActionID|操作解释|context变量|
+|-|-|-|
 |10001|登录操作|\[username\], \[email\], \[phoneNum\], uid, \[token\], \[refresh_token\], BrowserUA|
-|10002|注册操作|username, \[email\], \[phoneNum\], uid, nickName, BrowserUA|
+|10002|注册操作|username, \[email\], \[phoneNum\], uid, displayName, BrowserUA|
 |10003|验证Token操作|tokenID, uid|
 |10004|刷新Token操作|usedRefreshToken, \[newTokenID\], \[newRefreshToken\]|
-|10005|获取用户信息操作|uid|
-|10006|更改用户信息操作|uid, db_col_name|
+|10005|删除用户操作|uid, \[phoneNum\], \[email\], \[displayName\], BrowserUA|
+|10006|更改用户信息操作|uid|
 |10007|更改设置操作|uid|
-|10008|
+|10008|验证手机操作|uid|
+|10009|验证邮箱操作|uid|
+|10010|更改手机操作|uid|
+|10011|更改邮箱操作|uid|
+|10012|申请验证码操作|uid, actionID, action_param, send_method, \[veri_code\]|
+|10013|使用验证码操作|uid, veri_code|
+|20001|创建APP操作|uid, \[appuid\], displayName, \[clientID\], \[clientSecret\], \[clientType
+\], regArea, BrowserUA|
+|20002|修改APP信息操作|uid, appuid|
+|20003|更改APP管理列表操作|uid, appuid|
+|20004|转让APP操作|uid, appuid, newOwnerUID|
+|20003|删除APP操作|uid, appuid|
