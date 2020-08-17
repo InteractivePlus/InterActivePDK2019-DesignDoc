@@ -658,3 +658,21 @@ APP根据用途分类:
 注: 一个APP只能拥有一个owner, 其他角色人数不限.
 
 ## 10.0 Log中ActionID的定义
+
+Note: 所有Context中均有全局变量如下
+
+|context变量|类型|解释|
+|-|-|-|
+|success|bool|操作是否成功|
+|PDKExceptionCode|int|PDK内部错误代码, 若无错误填写0|
+|clientAddr|客户端IP地址|
+
+|ActionID|操作解释|context变量|
+|10001|登录操作|\[username\], \[email\], \[phoneNum\], uid, \[token\], \[refresh_token\], BrowserUA|
+|10002|注册操作|username, \[email\], \[phoneNum\], uid, nickName, BrowserUA|
+|10003|验证Token操作|tokenID, uid|
+|10004|刷新Token操作|usedRefreshToken, \[newTokenID\], \[newRefreshToken\]|
+|10005|获取用户信息操作|uid|
+|10006|更改用户信息操作|uid, db_col_name|
+|10007|更改设置操作|uid|
+|10008|

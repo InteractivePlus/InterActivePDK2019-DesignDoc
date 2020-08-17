@@ -33,8 +33,7 @@ https://pdkapi.interactiveplus.org/v1/interactiveLiveID/token
 
 #### 2.1.1 登录API
 
-请求方法:   
-GET   
+请求方法: `GET`      
 
 URL:   
 
@@ -42,7 +41,7 @@ URL:
 /v1/interactiveLiveID/token   
 ```
 
-Captcha ActionID: 1   
+Captcha ActionID: `1`   
 
 附带GET参数:   
 
