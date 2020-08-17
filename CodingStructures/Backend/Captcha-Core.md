@@ -16,7 +16,7 @@
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|phrase|VARCHAR(5)|验证码口令|-|-|
+|phrase|VARCHAR(5)|验证码口令|-|不区分大小写, 小写储存|
 |gen_time|INT|验证码生成时间|-|-|
 |expire_time|INT|验证码过期时间|-|-|
 |clientAddr|VARCHAR(40)|用户IP地址|-|-|
