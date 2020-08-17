@@ -214,7 +214,7 @@ To be filled.
 |message|TEXT|日志信息|-|-|
 |success|TINYINT|成功?|-|0 = no, 1 = yes|
 |PDKExceptionCode|INT|PDK错误代码|-|无错误为0|
-|context|MEDIUMTEXT|日志详细信息|-|JSON Object|
+|context|MEDIUMTEXT|日志详细信息|gzcompress(Original JSON String)|-|
 |clientAddr|VARCHAR(40)|客户端IP|-|-|
 
 #### 4.2.10 avatars表
@@ -683,3 +683,4 @@ APP根据用途分类:
 |20003|更改APP管理列表操作|uid, appuid|
 |20004|转让APP操作|uid, appuid, newOwnerUID|
 |20003|删除APP操作|uid, appuid|
+|90001|PSR Logger Log|不限|
