@@ -6,3 +6,4 @@
 
 - [后端CoreLib标准](CoreLib.md)
 - [后端API接口标准](API.md)
+- [后端验证码系统CoreLib标准](Captcha-Core.md)
