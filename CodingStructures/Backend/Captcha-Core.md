@@ -20,5 +20,4 @@
 |gen_time|INT|验证码生成时间|-|-|
 |expire_time|INT|验证码过期时间|-|-|
 |clientAddr|VARCHAR(40)|用户IP地址|-|-|
-|used|TINYINT|是否已被使用|-|1 = yes, 0 = no|
 |actionID|INT|用途|-|见CoreLib中定义的Log ActionID|
