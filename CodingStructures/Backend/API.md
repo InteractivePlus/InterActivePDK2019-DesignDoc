@@ -52,13 +52,7 @@ URL:
 |width|int|宽度(px), 不填默认150|
 |height|int|高度(px), 不填默认40|
 
-返回HTTP Status Code:   
-
-|Status Code|解释|
-|-|-|
-|200|请求完全正常|
-|400|请求中部分参数格式不正确或者没有填写|
-|401|请求中token不正确|
+正常返回HTTP Status Code: `201 CREATED`   
 
 返回 HTTP Body JSON数据:   
 
@@ -101,12 +95,25 @@ Captcha ActionID: `10001`
 |password|string|密码原文|
 |captchaPhrase|mixed|验证码|
 
-返回HTTP Status Code:   
+正常返回HTTP Status Code: `201 Created`   
 
-|Status Code|解释|
-|-|-|
-|200|请求完全正常|
-|400|请求中部分参数格式不正确或者没有填写,或者验证码填写错误|
+返回 HTTP Body JSON数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|errCode|int|错误代码|-|0 = 无错误|
+|errMessage|string|错误详情|-|-|
+|errContext|array|错误环境|-|-|
+|tokenInfo|array|验证码详细信息|-|仅在无错误时提供|
+
+tokenInfo键位数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|token|string|登录凭据|-|-|
+|refresh_token|string|刷新凭据|-|-|
+|expires|int|过期时间(UTC)|-|-|
+|refresh_expires|int|刷新令牌过期时间(UTC)|-|-|
 
 ## 3.0 API错误代码一览
 
@@ -118,6 +125,8 @@ Captcha ActionID: `10001`
 |20001|Item not found|-|item=`request_param_name`|404|
 |20002|Item already exist|-|item=`request_param_name`|409|
 |30001|Permission Denied|-|-|403|
+|30002|Account Frozen|-|-|403|
+|30003|Account not verified|-|contact="phone"/contact="email"|403|
 |90001|Operation Too Frequent|-|-|403|
 |90002|System Busy|-|-|503|
 |90003|Internal Error|-|pdkErrCode, pdkErrDescription, pdkErrParam|500|
