@@ -38,7 +38,7 @@ https://pdkapi.interactiveplus.org/v1/interactiveLiveID/token
 URL:   
 
 ```
-/v1/Common/captcha   
+/v1/common/captcha   
 ```
 
 附带GET参数:   
