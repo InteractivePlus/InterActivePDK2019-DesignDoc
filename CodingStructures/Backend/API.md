@@ -41,6 +41,8 @@ URL:
 /v1/common/captcha   
 ```
 
+ActionID: `80001`   
+
 附带GET参数:   
 
 |参数名|类型|解释|
@@ -84,7 +86,7 @@ URL:
 /v1/interactiveLiveID/token   
 ```
 
-Captcha ActionID: `10001`   
+ActionID: `10001`   
 
 附带GET参数:   
 

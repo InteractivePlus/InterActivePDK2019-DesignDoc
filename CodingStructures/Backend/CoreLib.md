@@ -682,5 +682,5 @@ APP根据用途分类:
 |20003|更改APP管理列表操作|uid, appuid|
 |20004|转让APP操作|uid, appuid, newOwnerUID|
 |20003|删除APP操作|uid, appuid|
-|80001|申请Captcha验证码操作|\[uid\],\[appuid\], BrowserUA|
+|80001|申请Captcha验证码操作|\[uid\],\[appuid\], \[captchaPhrase\], BrowserUA|
 |90001|PSR Logger Log|不限|
