@@ -25,6 +25,15 @@ https://pdkapi.interactiveplus.org/版本号/API所属类型/操作对象/可拓
 https://pdkapi.interactiveplus.org/v1/interactiveLiveID/token
 ```
 
+### 1.2 全局Get参数
+
+任何 MultiLang API:
+
+|参数名|类型|解释|
+|-|-|-|
+|area|string|CN\|US|
+|locale|string|zh_CN\|en_US|
+
 ## 2.0 官网API
 
 官网API定义了和形随意动用户系统前端(InterActiveLiveID)交互所需的所有API.
@@ -77,6 +86,8 @@ captchaInfo键位数据:
 ### 2.2 通用用户API
 
 #### 2.2.1 登录API
+
+此API是**MultiLang API**   
 
 请求方法: `GET`      
 
