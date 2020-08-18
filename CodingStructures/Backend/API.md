@@ -111,6 +111,7 @@ Captcha ActionID: `10001`
 |-|-|-|-|
 |10001|Credential Incorrect|-|credential = `request_param_name`|
 |10002|Credential Format Incorrect|-|credential = `request_param_name`|
+|10003|Credential expired|-|credential = `request_param_name`|
 |20001|Item not found|-|item=`request_param_name`|
 |20002|Item already exist|-|item=`request_param_name`|
 |30001|Permission Denied|-|-|
