@@ -47,7 +47,8 @@ URL:
 |-|-|-|
 |actionID|int|验证码用途|
 |clientID|string|第三方APP ClientID(如果用于官网,则留空)|
-|token|string|用户token(可选)|
+|token|string|用户token(可选),是官网APP且需要token时填写|
+|access_token|string|OAuth Access Token(可选), 为OAuth APP时填写|
 
 返回HTTP Status Code:   
 
@@ -116,3 +117,4 @@ Captcha ActionID: `10001`
 |20002|Item already exist|-|item=`request_param_name`|
 |30001|Permission Denied|-|-|
 |90001|Operation Too Frequent|-|-|
+|90002|System Busy|-|-|
