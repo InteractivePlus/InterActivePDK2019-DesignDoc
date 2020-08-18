@@ -49,6 +49,8 @@ URL:
 |clientID|string|第三方APP ClientID(如果用于官网,则留空)|
 |token|string|用户token(可选),是官网APP且需要token时填写|
 |access_token|string|OAuth Access Token(可选), 为OAuth APP时填写|
+|width|int|宽度(px), 不填默认150|
+|height|int|高度(px), 不填默认40|
 
 返回HTTP Status Code:   
 
@@ -108,13 +110,14 @@ Captcha ActionID: `10001`
 
 ## 3.0 API错误代码一览
 
-|错误代码|解释|批注|环境变量(Context)|
-|-|-|-|-|
-|10001|Credential Incorrect|-|credential = `request_param_name`|
-|10002|Credential Format Incorrect|-|credential = `request_param_name`|
-|10003|Credential expired|-|credential = `request_param_name`|
-|20001|Item not found|-|item=`request_param_name`|
-|20002|Item already exist|-|item=`request_param_name`|
-|30001|Permission Denied|-|-|
-|90001|Operation Too Frequent|-|-|
-|90002|System Busy|-|-|
+|错误代码|解释|批注|环境变量(Context)|HTTP Status Code|
+|-|-|-|-|-|
+|10001|Credential Incorrect|-|credential = `request_param_name`|401|
+|10002|Credential Format Incorrect|-|credential = `request_param_name`|400|
+|10003|Credential expired|-|credential = `request_param_name`|401|
+|20001|Item not found|-|item=`request_param_name`|404|
+|20002|Item already exist|-|item=`request_param_name`|409|
+|30001|Permission Denied|-|-|403|
+|90001|Operation Too Frequent|-|-|403|
+|90002|System Busy|-|-|503|
+|90003|Internal Error|-|pdkErrCode, pdkErrDescription, pdkErrParam|500|
