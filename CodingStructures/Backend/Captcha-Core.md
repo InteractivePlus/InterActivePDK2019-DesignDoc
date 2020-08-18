@@ -21,3 +21,4 @@
 |expire_time|INT|验证码过期时间|-|-|
 |clientAddr|VARCHAR(40)|用户IP地址|-|-|
 |actionID|INT|用途|-|见CoreLib中定义的Log ActionID|
+|appuid|BIGINT UNSIGNED NOT NULL|所属的APP|-|APP本身填写0|

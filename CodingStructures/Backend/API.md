@@ -63,6 +63,7 @@ URL:
 |-|-|-|-|-|
 |errCode|int|错误代码|-|0 = 无错误|
 |errMessage|string|错误详情|-|-|
+|errContext|array|错误环境|-|-|
 |captchaInfo|array|验证码详细信息|-|仅在无错误时提供|
 
 captchaInfo键位数据:   
@@ -74,9 +75,9 @@ captchaInfo键位数据:
 |captchaData|string|验证码数据|base64_encode(JpegData)|-|
 |expires|int|过期UNIX时间戳|-|UTC Unix Timestamp|
 
-### 2.1 通用用户API
+### 2.2 通用用户API
 
-#### 2.1.1 登录API
+#### 2.2.1 登录API
 
 请求方法: `GET`      
 
@@ -103,3 +104,14 @@ Captcha ActionID: `10001`
 |-|-|
 |200|请求完全正常|
 |400|请求中部分参数格式不正确或者没有填写,或者验证码填写错误|
+
+## 3.0 API错误代码一览
+
+|错误代码|解释|批注|环境变量(Context)|
+|-|-|-|-|
+|10001|Credential Incorrect|-|credential = `request_param_name`|
+|10002|Credential Format Incorrect|-|credential = `request_param_name`|
+|20001|Item not found|-|item=`request_param_name`|
+|20002|Item already exist|-|item=`request_param_name`|
+|30001|Permission Denied|-|-|
+|90001|Operation Too Frequent|-|-|
