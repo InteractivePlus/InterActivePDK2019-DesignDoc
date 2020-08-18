@@ -664,7 +664,7 @@ APP根据用途分类:
 
 |ActionID|操作解释|context变量|
 |-|-|-|
-|10001|登录操作|\[username\], \[email\], \[phoneNum\], uid, \[token\], \[refresh_token\], BrowserUA|
+|10001|登录操作|method=0/1/2, uid, \[token\], BrowserUA|
 |10002|注册操作|username, \[email\], \[phoneNum\], uid, displayName, BrowserUA|
 |10003|验证Token操作|tokenID, uid|
 |10004|刷新Token操作|usedRefreshToken, \[newTokenID\], \[newRefreshToken\]|
