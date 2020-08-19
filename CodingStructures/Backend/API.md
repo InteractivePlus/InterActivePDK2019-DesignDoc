@@ -128,6 +128,41 @@ tokenInfo键位数据:
 |expires|int|过期时间(UTC)|-|-|
 |refresh_expires|int|刷新令牌过期时间(UTC)|-|-|
 
+#### 2.2.2 注册API
+
+此API是**MultiLang API**   
+
+请求方法: `POST`      
+
+URL:   
+
+```
+/v1/interactiveLiveID/user   
+```
+
+ActionID: `10002`   
+
+附带GET参数:   
+
+|参数名|类型|解释|
+|-|-|-|
+|accountType|int|登录账户类型, 1 = 邮箱, 2 = 手机|
+|account|string|用户账户|
+|username|string|用户名|
+|displayName|string|展示名|
+|password|string|密码原文|
+|captchaPhrase|mixed|验证码|
+
+正常返回HTTP Status Code: `201 Created`   
+
+返回 HTTP Body JSON数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|errCode|int|错误代码|-|0 = 无错误|
+|errMessage|string|错误详情|-|-|
+|errContext|array|错误环境|-|-|
+
 ## 3.0 API错误代码一览
 
 |错误代码|解释|批注|环境变量(Context)|HTTP Status Code|
