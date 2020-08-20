@@ -96,15 +96,15 @@ To be filled.
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
 |uid|BIGINT UNSIGNED NOT NULL AUTO_INCREMENT|用户UID|-|唯一索引|
-|username|VARCHAR(`USERNAME_MAXLEN`)|用户名|-|唯一索引|
-|display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|用户展示名|-|唯一索引|
+|username|VARCHAR(`USERNAME_MAXLEN`) NOT NULL|用户名|-|唯一索引|
+|display_name|VARCHAR(`DISPLAYNAME_MAXLEN`) NOT NULL|用户展示名|-|唯一索引|
 |signature|VARCHAR(`SIGNATURE_MAXLEN`)|用户签名|-|-|
 |password|CHAR(64)|密码哈希|sha256(original,`PASSWORD_SALT`)|大写|
 |locale|CHAR(6)|用户的语言|zh_CN, en_US, en_GB, etc|-|
 |area|CHAR(2)|用户的地区|CN, US, GB, etc.|-|
 |email|VARCHAR(`EMAIL_MAXLEN`)|邮箱|-|索引|
 |phone_number|CHAR(15)|用户绑定手机号|E.164|索引|
-|settings|TEXT|用户设置|gzcompress(original json object)|-|
+|settings|BLOB|用户设置|gzcompress(original json object)|-|
 |email_verified|TINYINT(1)|邮箱是否验证过|-|1(true) / 0(false)|
 |phone_verified|TINYINT(1)|手机是否被验证过|-|1(true) / 0(false)|
 |permission_override|TEXT|用户权限(覆盖组权限的内容)|gzcompress(original json object)|可留空|
@@ -119,7 +119,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|groupid|VARCHAR(`USERNAME_MAXLEN`)|组id|-|唯一索引|
+|groupid|VARCHAR(`USERNAME_MAXLEN`) NOT NULL|组id|-|唯一索引|
 |parent_group_id|VARCHAR(`USERNAME_MAXLEN`)|父组id|-|-|
 |display_name|VARCHAR(`DISPLAYNAME_MAXLEN`)|组展示名|-|-|
 |description|VARCHAR(`SIGNATURE_MAXLEN`)|组详细信息|-|-|
@@ -144,7 +144,7 @@ To be filled.
 
 |字段名|数据类型|解释|算法|注释|
 |-|-|-|-|-|
-|veri_code|CHAR(32)|验证码|bin2hex(random_bytes(16))|唯一索引,大写|
+|veri_code|CHAR(32) NOT NULL|验证码|bin2hex(random_bytes(16))|唯一索引,大写|
 |uid|BIGINT UNSIGNED NOT NULL|验证码关联的用户uid|-|索引|
 |action_id|INT|此验证码用来做什么|-|-|
 |action_param|TEXT|验证码操作参数|gzcompress(original JSON object)|-|
@@ -214,7 +214,7 @@ To be filled.
 |message|TEXT|日志信息|-|-|
 |success|TINYINT|成功?|-|0 = no, 1 = yes|
 |PDKExceptionCode|INT|PDK错误代码|-|无错误为0|
-|context|MEDIUMTEXT|日志详细信息|gzcompress(Original JSON String)|-|
+|context|MEDIUMBLOB|日志详细信息|gzcompress(Original JSON String)|-|
 |clientAddr|VARCHAR(40)|客户端IP|-|-|
 
 #### 4.2.10 avatars表
