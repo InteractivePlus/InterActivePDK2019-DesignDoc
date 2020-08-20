@@ -169,8 +169,6 @@ ActionID: `10002`
 
 #### 2.2.3 验证Token API
 
-此API是**MultiLang API**   
-
 请求方法: `GET`      
 
 URL:   
@@ -181,7 +179,7 @@ URL:
 
 ActionID: `10003`   
 
-附带POST参数:   
+附带GET参数:   
 
 |参数名|类型|解释|算法|注释|
 |-|-|-|-|-|
