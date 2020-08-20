@@ -96,7 +96,7 @@ captchaInfo键位数据:
 URL:   
 
 ```
-/v1/interactiveLiveID/token   
+/v1/interactiveLiveID/token
 ```
 
 ActionID: `10001`   
@@ -119,7 +119,7 @@ ActionID: `10001`
 |errCode|int|错误代码|-|0 = 无错误|
 |errMessage|string|错误详情|-|-|
 |errContext|array|错误环境|-|-|
-|tokenInfo|array|验证码详细信息|-|仅在无错误时提供|
+|tokenInfo|array|登录凭据详细信息|-|仅在无错误时提供|
 
 tokenInfo键位数据:   
 
@@ -140,7 +140,7 @@ tokenInfo键位数据:
 URL:   
 
 ```
-/v1/interactiveLiveID/user   
+/v1/interactiveLiveID/user
 ```
 
 ActionID: `10002`   
@@ -174,7 +174,7 @@ ActionID: `10002`
 URL:   
 
 ```
-/v1/interactiveLiveID/validationResult/token   
+/v1/interactiveLiveID/validationResult/token
 ```
 
 ActionID: `10003`   
@@ -196,6 +196,45 @@ ActionID: `10003`
 |errContext|array|错误环境|-|-|
 |expires|int|过期时间(UTC UNIX TIMESTAMP)|-|-|
 |uid|int|用户uid|-|-|
+
+#### 2.2.4 刷新Token API
+
+请求方法: `POST`      
+
+URL:   
+
+```
+/v1/interactiveLiveID/token
+```
+
+ActionID: `10004`   
+
+附带GET参数:   
+
+|参数名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|refresh_token|string|刷新凭据|-|-|
+
+正常返回HTTP Status Code: `201 Created`   
+
+返回 HTTP Body JSON数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|errCode|int|错误代码|-|0 = 无错误|
+|errMessage|string|错误详情|-|-|
+|errContext|array|错误环境|-|-|
+|newTokenInfo|int|新登录凭据详细信息|-|-|
+
+newTokenInfo键位数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|uid|int|用户UID|-|-|
+|token|string|登录凭据|-|-|
+|refresh_token|string|刷新凭据|-|-|
+|expires|int|过期时间(UTC)|-|-|
+|refresh_expires|int|刷新令牌过期时间(UTC)|-|-|
 
 ## 3.0 API错误代码一览
 
