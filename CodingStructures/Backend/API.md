@@ -10,7 +10,9 @@
 
 形随意动OPENAPI 4.1在设计后端API时着重考虑到API的易读性和可理解性, 使用Restful API结构.   
 
-API域名: pdkapi.interactiveplus.org/
+API域名: pdkapi.interactiveplus.org/   
+
+注意: 全局POST的Request必须设置Content-Type为application/json   
 
 ### 1.1 API URL 细则
 
@@ -123,6 +125,7 @@ tokenInfo键位数据:
 
 |数据键名|类型|解释|算法|注释|
 |-|-|-|-|-|
+|uid|int|用户UID|-|-|
 |token|string|登录凭据|-|-|
 |refresh_token|string|刷新凭据|-|-|
 |expires|int|过期时间(UTC)|-|-|
@@ -162,6 +165,39 @@ ActionID: `10002`
 |errCode|int|错误代码|-|0 = 无错误|
 |errMessage|string|错误详情|-|-|
 |errContext|array|错误环境|-|-|
+|uid|int|用户UID|-|-|
+
+#### 2.2.3 验证Token API
+
+此API是**MultiLang API**   
+
+请求方法: `GET`      
+
+URL:   
+
+```
+/v1/interactiveLiveID/validationResult/token   
+```
+
+ActionID: `10003`   
+
+附带POST参数:   
+
+|参数名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|token|string|登录凭据|-|-|
+
+正常返回HTTP Status Code: `200 Ok`   
+
+返回 HTTP Body JSON数据:   
+
+|数据键名|类型|解释|算法|注释|
+|-|-|-|-|-|
+|errCode|int|错误代码|-|0 = 无错误|
+|errMessage|string|错误详情|-|-|
+|errContext|array|错误环境|-|-|
+|expires|int|过期时间(UTC UNIX TIMESTAMP)|-|-|
+|uid|int|用户uid|-|-|
 
 ## 3.0 API错误代码一览
 
